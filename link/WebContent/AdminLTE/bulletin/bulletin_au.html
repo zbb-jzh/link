@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="common/plugins/jQuery-ztree/demo.css">
+    <link rel="stylesheet" href="common/plugins/jQuery-ztree/zTreeStyle.css">
+</head>
+<body>
+<div class="box-body" id="groupau" ms-controller="consumerau">
+    
+    <div class="row">
+        <div class="col-md-9 with-sidebar">
+            <form class="form-horizontal" enctype="multipart/form-data">
+                <!-- input states -->
+                <div class="form-group has-feedback" ms-class="has-warning:bulletin.name=='' && submited">
+                    <label class="control-label" for="name">
+                        <span ms-if="bulletin.name == '' && submited">请输入名称</span>
+                    </label>
+                    <label class="col-md-2 control-label">标题</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" placeholder="标题" ms-duplex="bulletin.name" id="name" />
+                    </div>
+                </div>
+                <div class="form-group has-feedback" >
+                    <label class="col-md-2 control-label">类型</label>
+                    <div class="col-md-3">
+                        <select class="form-control" id="goodscategory" ms-duplex="bulletin.type">
+                             <option value="1">公告</option>
+                             <!-- <option value="2">企业</option> -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" >
+                    <label class="control-label" for="manager">
+                        <span ms-if="false">请输入联系人</span>
+                        <span ms-if="false">联系人姓名不能超过五个字</span>
+                    </label>
+                    <label class="col-md-2 control-label">排序</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" placeholder="联系人" ms-duplex="bulletin.contactPerson" id="manager" />
+                    </div>
+                </div>
+                
+                <div class="form-group has-feedback" >
+                    <label class="col-md-2 control-label">是否发布</label>
+                    <div class="col-md-3">
+                        <select class="form-control" id="goodscategory" ms-duplex="bulletin.type">
+                             <option value="1">是</option>
+                             <option value="0">否</option>
+                        </select>
+                    </div>
+                </div>
+                
+                    
+                <div class="form-group has-feedback">
+                    <label class="col-md-2 control-label">内容</label>
+                    <div class="col-md-8">
+                        <textarea rows="4" class="form-control" placeholder="简述" ms-duplex="bulletin.description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-8">
+                        <button type="button" ms-click="add()">提交</button>
+                        <button type="button" ms-click="goback()">返回</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="common/plugins/avalon/avalon.js"></script>
+<script type="text/javascript" src="common/plugins/jQuery-ztree/jquery.ztree.core.min.js" > </script>
+<script type="text/javascript" src="common/plugins/jQuery-ztree/jquery.ztree.all.min.js" > </script>
+<script type="text/javascript" src="js/tools.js" > </script>
+<script type="text/javascript" src="consumer/js/consumer_au.js" > </script>
+</html>

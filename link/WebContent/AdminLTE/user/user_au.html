@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="box-body" id="userau" ms-controller="userau">
+    <div class="row">
+        <div class="col-md-9 with-sidebar">
+            <form class="form-horizontal" enctype="multipart/form-data">
+                <!-- input states -->
+                <div class="form-group has-feedback" ms-class="has-warning:user.name=='' && submited">
+                    <label class="control-label" for="name">
+                        <span ms-if="user.name=='' && submited">请输入用户名</span>
+                    </label>
+                    <label class="col-md-2 control-label">用户名</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" placeholder="用户名" ms-duplex="user.name" id="name" />
+                    </div>
+                </div>
+                <!-- <div class="form-group has-feedback" >
+                    <label class="col-md-2 control-label">用户类型</label>
+                    <div class="col-md-3">
+                        <select class="form-control" id="usertype" ms-duplex="user.typeId">
+                            <option value="1000">经理</option>
+                            <option value="1001">员工</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="form-group has-feedback">
+                     <label class="col-md-2 control-label">性别</label>
+                        <div class="col-md-4">
+                            <select id="select_sex" ms-duplex="user.sex" class="form-control">
+                                <option value="1">男</option>
+                                <option value="2">女</option>
+                            </select>
+                      </div>
+                </div>
+                
+                <div class="form-group has-feedback" ms-class="has-warning:user.password=='' && submited">
+                	<label class="control-label" for="txt_password">
+                        <span ms-if="user.password == '' && submited">请输入密码</span>
+                        <span ms-if="false">密码过长</span>
+                     </label>
+                     <label class="col-md-2 control-label">密码</label>
+                     <div class="col-md-4">
+						<input type="password" ms-duplex="user.password" class="form-control" id="txt_password" placeholder="密码">
+                          
+                      </div>
+                </div>
+                <!-- <div class="form-group has-feedback">
+                    <label class="col-md-2 control-label">店铺简述</label>
+                    <div class="col-md-8">
+                        <input class="form-control" placeholder="店铺简述" ms-duplex="model.description"/>
+                    </div>
+                </div> -->
+                
+                <div class="form-group has-feedback" ms-class="has-warning:user.phone=='' && submited">
+                    <label class="control-label" for="phone">
+                        <span ms-if="user.phone=='' && submited">请输入手机号</span>
+                        <span ms-if="false">请输入正确的手机号</span>
+                    </label>
+                    <label class="col-md-2 control-label">联系电话</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="phone" placeholder="联系电话" ms-duplex="user.phone" />
+                    </div>
+                </div>
+                
+                <div class="form-group has-feedback" >
+                    <!-- <label class="control-label" for="post">
+                        <span ms-if="user.phone=='' && submited">请输入手机号</span>
+                        <span ms-if="false">请输入正确的手机号</span>
+                    </label> -->
+                    <label class="col-md-2 control-label">职位</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="post" placeholder="职位" ms-duplex="user.post" />
+                    </div>
+                </div>
+                
+                <div class="form-group has-feedback" >
+                    <!-- <label class="control-label" for="post">
+                        <span ms-if="user.phone=='' && submited">请输入手机号</span>
+                        <span ms-if="false">请输入正确的手机号</span>
+                    </label> -->
+                    <label class="col-md-2 control-label">工资</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="salary" placeholder="工资，单位元" ms-duplex="user.salary" />
+                    </div>
+                </div>
+                
+                <div class="form-group has-feedback" >
+                    <label class="control-label" for="email">
+                        <span ms-if="false">请输入正确的邮箱</span>
+                    </label>
+                    <label class="col-md-2 control-label">邮箱</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="email" placeholder="邮箱" ms-duplex="user.email" />
+                    </div>
+                </div>
+                
+                <div class="form-group has-feedback" >
+                    <label class="control-label" for="address">
+                        <span ms-if="false">请输入地址</span>
+                    </label>
+                    <label class="col-md-2 control-label">联系地址</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="address" placeholder="联系地址" ms-duplex="user.address" />
+                    </div>
+                </div>
+                
+                <div class="form-group has-feedback" >
+                    <label class="col-md-2 control-label">角色</label>
+                    <div class="col-md-8 checkbox">
+                        <label ms-repeat-role="roleList">
+                            <input type="checkbox" ms-duplex-checked="role.checked">{{role.name}}<br>
+                       </label>
+                    </div>
+                </div>
+                      	
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-8">
+                        <button type="button" ms-click="add()">提交</button>
+                        <button type="button" ms-click="goback()">返回</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="common/plugins/avalon/avalon.js"></script>
+<script type="text/javascript" src="common/plugins/vue/vue-validator.min.js"></script>
+<script type="text/javascript" src="js/tools.js" > </script>
+<script type="text/javascript" src="user/js/user_au.js" > </script>
+</html>

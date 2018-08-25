@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登录</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+  <link rel="stylesheet" href="../common/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../common/plugins/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../common/plugins/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../common/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../common/dist/css/skins/_all-skins.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="../common/plugins/iCheck/flat/blue.css">
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="../common/plugins/morris/morris.css">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="../common/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="../common/plugins/datepicker/datepicker3.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="../common/plugins/daterangepicker/daterangepicker-bs3.css">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="../common/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+</head>
+<body class="hold-transition login-page" ms-controller="login">
+<div class="login-box">
+    <div class="login-logo">
+        <b>登录</b>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <form >
+            <div class="form-group has-feedback">
+                <input id="txt_account" name="account" type="text" class="form-control" placeholder="用户名" ms-duplex="name" required="required">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input id="txt_password" name="password" type="password"  class="form-control" placeholder="密码" ms-duplex="password" required="required">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <!-- <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            <input id="cbx_auto_login" name="autoLogin" type="checkbox"> 自动登录
+                        </label>
+                    </div>
+                </div> -->
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="button" id="btn_login" ms-click="click" class="btn btn-primary btn-block btn-flat">登录</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+
+        <!-- /.social-auth-links -->
+        <!--<a href="#">忘记密码</a><br>-->
+    </div>
+    <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+<script src="../common/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<script type="text/javascript" src="../common/plugins/avalon/avalon.js"></script>
+<script type="text/javascript" src="js/login.js" > </script>
+</body>
+</html>

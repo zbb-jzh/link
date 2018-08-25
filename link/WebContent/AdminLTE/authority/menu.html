@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<style type="text/css">
+	.modal-dialog { 
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+} 
+
+.modal-content { 
+    /*overflow-y: scroll; */ 
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    width: 100%; 
+} 
+
+.modal-body { 
+    overflow-y: scroll; 
+    position: absolute; 
+    top: 55px; 
+    bottom: 65px; 
+    width: 100%; 
+} 
+
+.modal-header .close {margin-right: 15px;} 
+
+.modal-footer {
+    position: absolute; 
+    width: 100%; 
+    bottom: 0; 
+}
+</style>
+<body >
+<div class="box" id="authority"  ms-controller="authority">
+    <div class="box-header">
+        <h3 class="box-title">服务入口管理</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body" >
+        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-3"></div>
+                <div class="col-md-3">
+                    <div class="btn-search"  ms-click="toAdd(true)" ms-if="hasAdd">添加服务</div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                        <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                名称
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">
+                                描述
+                            </th>
+
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">
+                               操作
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr role="row"   ms-repeat-menu="menuList">
+                            <td class="">{{menu.name}}</td>
+                            <td>{{menu.description}}</td>
+                            <td  class="status">
+                            	<button  type="button" class="btn-flat white" ms-click="toShowSub(menu)" ms-if="hasAdd">查看功能入口</button>
+                            	<button  type="button" class="btn-flat white" ms-click="edit(menu)" ms-if="hasUpdate">修改</button>
+                            	<button  type="button" class="btn-flat white" ms-click="deleteP(menu.id)" ms-if="hasDelete">删除</button>
+                                <!-- <p ms-click="toShowSub(menu)">查看功能入口</p>
+                                <p ms-click="edit(menu)">修改</p>
+                                <p ms-click="deleteP(menu.id)">删除</p> -->
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    <div class="modal fade in" style="display:block;" ms-if="showSub">
+        <div class="modal-dialog modal-m">
+            <div class="modal-content" style="margin-top:50px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ms-click="toHideSub()">
+                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                    </button>
+                    <h3 class="modal-title ng-binding">功能入口</h3>
+                </div>
+                <!-- <div class="modal-body row">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-md-3">
+                        <div class="btn-search"  ms-click="toAdd(false,currentAuthority.id)">添加入口</div>
+                    </div>
+                </div> 
+                <!-- dialog body -->
+                <div class="modal-body row">
+                	<div class="col-sm-6"></div>
+                    <div class="col-sm-3"></div>
+                	<div class="col-md-3">
+                        <div class="btn-search"  ms-click="toAdd(false,currentAuthority.id)">添加入口</div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table  class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                            服务名称
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">
+                                            描述
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">
+                                            路由
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">
+                                            路径
+                                        </th>
+
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">
+                                            操作
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr role="row"   ms-repeat-authority="currentAuthority.subList">
+                                        <td class="">{{authority.name}}</td>
+                                        <td>{{authority.description}}</td>
+                                        <td>{{authority.route}}</td>
+                                        <td>{{authority.paths}}</td>
+                                        <td  class="status">
+                                        	<button  type="button" class="btn-flat white" ms-if="authority.isLeaf == 0" ms-click="toshowBtn(authority)">功能按钮</button>
+                                        	<button  type="button" class="btn-flat white" ms-click="edit(authority)">修改</button>
+                            				<button  type="button" class="btn-flat white" ms-click="deleteP(authority.id)">删除</button>
+                                            <!-- <p ms-click="deleteP(authority.id)">删除</p>
+                                            <p ms-click="edit(authority)">修改</p> -->
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade in" style="display:block;" ms-if="showAdd">
+        <div class="modal-dialog modal-m">
+            <div class="modal-content" style="margin-top:200px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ms-click="hideAdd()">
+                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                    </button>
+                    <h3 class="modal-title ng-binding">信息</h3>
+                </div>
+                <!-- dialog body -->
+                <div class="modal-body row">
+                    <div class="col-md-10">
+
+                        <form role="form">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label>名称</label>
+                                    <input type="text" class="form-control" ms-duplex="model.name"  placeholder="服务显示的名称">
+                                </div>
+                                <div class="form-group">
+                                    <label>描述</label>
+                                    <input type="text" class="form-control" ms-duplex="model.description"  placeholder="输入描述">
+                                </div>
+                                <div class="form-group">
+                                    <label>排序权重</label>
+                                    <input type="text" class="form-control" ms-duplex="model.orderNum"  placeholder="输入数值">
+                                </div>
+                                <!-- <div class="form-group" ms-if="isParent==1">
+                                    <label>图标</label>
+                                    <input type="text" class="form-control" ms-duplex="fontIcon"  placeholder="输入字体图标">
+                                </div> -->
+                                <div class="form-group" ms-if="isParent==2">
+                                	<label>增改页面</label>
+                            		<select  class="form-control" id="unit" ms-duplex="model.isLeaf">
+                                		<option value="1">是</option>
+                                		<option value="0">否</option>
+                            		</select>
+                        		</div>
+                                <div class="form-group" ms-if="isParent==2">
+                                    <label>路由</label>
+                                    <input type="text" class="form-control" ms-duplex="model.route"  placeholder="输入地址栏路由">
+                                </div>
+                                <div class="form-group" ms-if="isParent==2">
+                                    <label>path</label>
+                                    <input type="text" class="form-control" ms-duplex="model.paths"  placeholder="输入实际相对路径">
+                                </div>
+
+                            </div>
+                            <div class="box-footer">
+                                <button type="button" class="btn btn-primary" ms-click="addOrUpdate">确认</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="modal fade in" style="display:block;" ms-if="showBtn">
+        <div class="modal-dialog modal-m">
+            <div class="modal-content" style="margin-top:50px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ms-click="toHideBtn()">
+                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                    </button>
+                    <h3 class="modal-title ng-binding">功能按钮</h3>
+                </div>
+                <!-- <div class=" modal-body row">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-md-3">
+                        <div class="btn-search"  ms-click="toAddBtn(currentMenuBtn)">添加入口</div>
+                    </div>
+                </div> -->
+                <!-- dialog body -->
+                <div class="modal-body row">
+                	<div class="col-sm-6"></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-md-3">
+                        <div class="btn-search"  ms-click="toAddBtn(currentMenuBtn)">添加入口</div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table  class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                            按钮名称
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">
+                                            按钮类型
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">
+                                            操作
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr role="row"   ms-repeat-btn="currentMenuBtn.btnList">
+                                        <td class="">{{btn.btnName}}</td>
+                                        <td>{{btn.btnType}}</td>
+                                        <td  class="status">
+                                        	<!-- <button  type="button" class="btn-flat white" ms-click="addBtn(btn)">按钮添加</button> -->
+                                        	<button  type="button" class="btn-flat white" ms-click="editBtn(btn)">修改</button>
+                            				<button  type="button" class="btn-flat white" ms-click="deleteBtn(btn.id)">删除</button>
+                                            <!-- <p ms-click="deleteP(authority.id)">删除</p>
+                                            <p ms-click="edit(authority)">修改</p> -->
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade in" style="display:block;" ms-if="showbtnAdd">
+        <div class="modal-dialog modal-m">
+            <div class="modal-content" style="margin-top:200px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ms-click="hideAddBtn()">
+                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                    </button>
+                    <h3 class="modal-title ng-binding">信息</h3>
+                </div>
+                <!-- dialog body -->
+                <div class="modal-body row">
+                    <div class="col-md-10">
+
+                        <form role="form">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label>按钮名称</label>
+                                    <input type="text" class="form-control" ms-duplex="menuBtn.btnName"  placeholder="服务显示的名称">
+                                </div>
+                                <div class="form-group">
+                                    <label>按钮类型</label>
+                                    <select ms-duplex="menuBtn.btnType" class="form-control select2 " style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    	
+                                     	<option ms-repeat-item="menuBtnTypes" ms-attr-value="{{item.value}}">{{item.name}}</option> 
+                                	</select>
+                                    
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                <button type="button" class="btn btn-primary" ms-click="addOrUpdateBtn()">确认</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+<!-- jQuery 2.2.0 -->
+<!-- <script src="common/plugins/jQuery/jQuery-2.2.0.min.js"></script> -->
+<script type="text/javascript" src="common/plugins/avalon/avalon.js"></script>
+<script type="text/javascript" src="js/tools.js" > </script>
+<script  src="authority/js/menu.js"></script>
+</html>

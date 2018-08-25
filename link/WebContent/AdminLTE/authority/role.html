@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/common.css">
+    
+    
+</head>
+<body>
+<div class="box" id="role" ms-controller="role">
+    <div class="box-header">
+        <h3 class="box-title">角色表</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body" >
+        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-3"></div>
+                <div class="col-md-3">
+                    <div class="btn-search"  ms-click="toAdd()" ms-if="hasAdd">添加角色</div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                        <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                名称
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">
+                                描述
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">
+                                操作
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr role="row"   ms-repeat-role="roleList">
+                            <td>{{role.name}}</td>
+                            <td>{{role.description}}</td>
+                            <td>
+                                <a ms-click="deleteR(role.id)" ms-if="hasDelete">删除</a>
+                                <a ms-click="edit(role)" ms-if="hasUpdate">修改</a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="modal fade in" style="display:block;" ms-if="showAdd">
+        <div class="modal-dialog modal-m" style="height: 600px;">
+            <div class="modal-content" style="margin-top:100px;height:600px;overflow: auto;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ms-click="hideDialog()">
+                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                    </button>
+                    <h3 class="modal-title ng-binding">信息</h3>
+                </div>
+                <!-- dialog body -->
+                <div class="modal-body">
+                    <div class="col-md-12">
+
+                        <form role="form">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label>名称</label>
+                                    <input type="text" class="form-control" ms-duplex="name"  placeholder="角色的名称">
+                                </div>
+                                <div class="form-group">
+                                    <label>描述</label>
+                                    <input type="text" class="form-control" ms-duplex="description"  placeholder="输入描述">
+                                </div>
+                                <div class="checkbox" ms-repeat-authority="authorityList">
+                                    {{authority.name}}<br>
+                                    <div class="checkbox" ms-repeat-sub="authority.subList">
+                                    	&nbsp&nbsp&nbsp&nbsp{{sub.name}}<br>
+                                    	<label ms-repeat-btn="sub.btnList">
+                                        	&nbsp&nbsp&nbsp&nbsp<input type="checkbox" ms-duplex-checked="btn.checked">{{btn.btnName}}<br>
+                                        </label>
+                                    <!-- <label ms-repeat-sub="authority.subList">
+                                        <input type="checkbox" ms-duplex-checked="sub.checked">{{sub.name}}<br>
+                                        <label ms-repeat-btn="sub.btnList">
+                                        	<input type="checkbox" ms-duplex-checked="btn.checked">{{btn.btnName}}<br>
+                                        </label><br>
+                                    </label> -->
+                                	</div>
+                            	</div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="button" class="btn btn-primary" ms-click="addOrUpdate()">确认</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!-- <script src="common/plugins/jQuery/jQuery-2.2.0.min.js"></script> -->
+<script type="text/javascript" src="common/plugins/avalon/avalon.js"></script>
+<script type="text/javascript" src="js/tools.js" > </script>
+<script src="authority/js/role.js"></script>
+</html>

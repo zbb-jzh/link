@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="box-body" id="userau" ms-controller="pwdmodify">
+    <div class="row">
+        <div class="col-md-9 with-sidebar">
+            <form class="form-horizontal" enctype="multipart/form-data">
+                <div class="form-group has-feedback" ms-class="has-warning:oldPwd=='' && submited">
+                	<label class="control-label" for="txt_password">
+                        <span ms-if="oldPwd == '' && submited">请输入原始密码</span>
+                     </label>
+                     <label class="col-md-2 control-label">原始密码</label>
+                     <div class="col-md-4">
+						<input type="password" ms-duplex="oldPwd" class="form-control" id="txt_password" placeholder="密码">
+                          
+                      </div>
+                </div>
+                
+                <div class="form-group has-feedback" ms-class="has-warning:newPwd=='' && submited">
+                	<label class="control-label" for="txt_password">
+                        <span ms-if="newPwd == '' && submited">请输入新密码</span>
+                     </label>
+                     <label class="col-md-2 control-label">新密码</label>
+                     <div class="col-md-4">
+						<input type="password" ms-duplex="newPwd" class="form-control" id="txt_password" placeholder="密码">
+                          
+                      </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-8">
+                        <button type="button" ms-click="changePwd()">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="common/plugins/avalon/avalon.js"></script>
+<script type="text/javascript" src="common/plugins/vue/vue-validator.min.js"></script>
+<script type="text/javascript" src="js/tools.js" > </script>
+<script type="text/javascript" src="user/js/modify_pwd.js" > </script>
+</html>

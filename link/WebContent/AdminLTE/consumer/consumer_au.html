@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="common/plugins/jQuery-ztree/demo.css">
+    <link rel="stylesheet" href="common/plugins/jQuery-ztree/zTreeStyle.css">
+</head>
+<body>
+<div class="box-body" id="groupau" ms-controller="consumerau">
+    
+    <div class="row">
+        <div class="col-md-9 with-sidebar">
+            <form class="form-horizontal" enctype="multipart/form-data">
+                <!-- input states -->
+                <div class="form-group has-feedback" ms-class="has-warning:consumer.name=='' && submited">
+                    <label class="control-label" for="name">
+                        <span ms-if="consumer.name == '' && submited">请输入名称</span>
+                    </label>
+                    <label class="col-md-2 control-label">名称</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" placeholder="名称" ms-duplex="consumer.name" id="name" />
+                    </div>
+                </div>
+                <div class="form-group has-feedback" >
+                    <label class="col-md-2 control-label">类型</label>
+                    <div class="col-md-3">
+                        <select class="form-control" id="goodscategory" ms-duplex="consumer.type">
+                             <option value="1">个人</option>
+                             <option value="2">企业</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- <div class="form-group" v-bind:class="{'has-warning':absoluteUrl.length == 0 && isSubmited}">
+                    <label class="control-label" for="upload">
+                        <span v-if="absoluteUrl.length == 0 && isSubmited">请上传图片</span>
+                    </label>
+                    <label class="col-md-2 control-label">图片</label>
+                    <div class="col-md-8">
+                        <div class="img-show clearfix">
+                            <div class="show-iamge" v-for="url in absoluteUrl" style="float: left">
+                                <img id="upload" alt="" style="width: 100px; height: 100px" v-bind:src="url"/>
+                                    <span class="cBtn spr db radius45" v-on:click="remove($index)">
+                                        <i class="fa fa-minus"></i>
+                                    </span>
+                            </div>
+                            <div class="addtion-top">
+                                <i class="addition"></i>
+                                <div id="myupload" class="myload">
+                                    <input  id="fileToUpload"  type="file" name="imgFile" onchange="upLoadGroupImg()">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div> -->
+                <div class="form-group has-feedback" >
+                    <label class="control-label" for="manager">
+                        <span ms-if="false">请输入联系人</span>
+                        <span ms-if="false">联系人姓名不能超过五个字</span>
+                    </label>
+                    <label class="col-md-2 control-label">联系人</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" placeholder="联系人" ms-duplex="consumer.contactPerson" id="manager" />
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ms-class="has-warning:consumer.phone=='' && submited">
+                    <label class="control-label" for="phone">
+                        <span ms-if="consumer.phone=='' && submited">请输入手机号</span>
+                        <span ms-if="false">请输入正确的手机号</span>
+                    </label>
+                    <label class="col-md-2 control-label">联系电话</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="phone" placeholder="联系电话" ms-duplex="consumer.phone" />
+                    </div>
+                </div>
+                <div class="form-group has-feedback" >
+                    <label class="control-label" for="address">
+                        <span ms-if="false">请输入地址</span>
+                    </label>
+                    <label class="col-md-2 control-label">联系地址</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="address" placeholder="详细地址" ms-duplex="consumer.address" />
+                    </div>
+                    <!-- <button type="button" v-on:click="open()">地图</button> -->
+                </div>
+                <!-- <div class="form-group has-feedback" v-bind:class="{'has-warning':$validation.longitude.invalid}">
+                    <label class="control-label" for="longitude">
+                        <span v-if="$validation.longitude.required">请设置经度</span>
+                    </label>
+                    <label class="col-md-2 control-label">经度</label>
+                    <div class="col-md-8">
+                        <input  class="form-control" id="longitude" placeholder="经度" v-model="model.longitude" readonly v-validate:longitude="{required: {rule:true ,initial:'off'}}"/>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" v-bind:class="{'has-warning':$validation.latitude.invalid}">
+                    <label class="control-label" for="latitude">
+                        <span v-if="$validation.latitude.required">请设置纬度</span>
+                    </label>
+                    <label class="col-md-2 control-label">纬度</label>
+                    <div class="col-md-8">
+                        <input  class="form-control" id="latitude" placeholder="纬度" v-model="model.latitude" readonly v-validate:latitude="{required: {rule:true ,initial:'off'}}"/>
+                    </div>
+                </div> -->
+
+                <!--<div class="form-group">是否上架</div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">店铺描述</label>
+                    <div class="col-md-10">
+                        <textarea id="goodsDesc" name="content" ms-duplex="model.content" style="width:100%;height:300px;visibility:hidden;"></textarea>
+                    </div>
+                </div>-->
+                
+                <div class="form-group has-feedback">
+                        <label class="col-md-2 control-label">客户层级</label>
+                        <div class="col-md-3">
+                            <ul id="goodsCateory" class="ztree"></ul>
+                        </div>
+                    </div>
+                    
+                <div class="form-group has-feedback">
+                    <label class="col-md-2 control-label">简述</label>
+                    <div class="col-md-8">
+                        <textarea rows="4" class="form-control" placeholder="简述" ms-duplex="consumer.description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-8">
+                        <button type="button" ms-click="add()">提交</button>
+                        <button type="button" ms-click="goback()">返回</button>
+                    </div>
+                </div>
+                <!--<div class="form-group">-->
+                    <!--<div class="col-sm-8">-->
+                        <!--在江苏省南京市搜索<input type="text" id="address_company" class="form-control input-lg" placeholder="设置发货点"  v-model="address">-->
+                    <!--</div><br>-->
+                    <!--<button type="button" class="btn btn-success btn-lg col-sm-3" v-on:click="doSearchAddress(address)">搜索</button>-->
+
+                <!--</div>-->
+
+                <!-- <div class="modal fade in" v-bind:style="{display:isShow}">
+                    <div class="modal-dialog modal-m">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" v-on:click="close">
+                                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                </button>
+                                <h3 class="modal-title ng-binding">地图</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <div class="col-sm-8">
+                                        在江苏省南京市搜索<input type="text" id="addresscompany" class="form-control input-lg" placeholder="设置发货点"  v-model="address">
+                                    </div><br>
+                                    <button type="button" class="btn btn-success btn-lg col-sm-3" v-on:click="doSearchAddress(address)">搜索</button>
+
+                                </div>
+
+                                <div id="allmap1" style="height:500px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="common/plugins/avalon/avalon.js"></script>
+<script type="text/javascript" src="common/plugins/jQuery-ztree/jquery.ztree.core.min.js" > </script>
+<script type="text/javascript" src="common/plugins/jQuery-ztree/jquery.ztree.all.min.js" > </script>
+<script type="text/javascript" src="js/tools.js" > </script>
+<script type="text/javascript" src="consumer/js/consumer_au.js" > </script>
+</html>

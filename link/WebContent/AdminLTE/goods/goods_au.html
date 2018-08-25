@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/common.css">
+    
+    <link rel="stylesheet" href="common/plugins/jQuery-ztree/demo.css">
+    <link rel="stylesheet" href="common/plugins/jQuery-ztree/zTreeStyle.css">
+    
+</head>
+<body>
+    <div class="box-body" id="goods" ms-controller="goodsau">
+        <div class="row">
+            <div class="col-md-9 with-sidebar">
+                <form class="form-horizontal" enctype="multipart/form-data">
+                    <!-- <div class="form-group has-feedback" >
+                        <label class="col-md-2 control-label">分类</label>
+                        <div class="col-md-3">
+                            <select class="form-control" id="goodscategory" ms-duplex="model.categoryId" v-on:change="doCategoryChange">
+                                <option v-for="item in sysCategoryList" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="form-group has-feedback" ms-class="has-warning: model.name == '' && submited">
+                        <label class="control-label" for="name">
+                            <span ms-if="model.name == '' && submited">请输入名称</span>
+                        </label>
+                        <label class="col-md-2 control-label">名称</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="name" placeholder="商品名称" ms-duplex="model.name" />
+                        </div>
+                    </div>
+
+                    <div class="form-group" ms-class="has-warning:absoluteUrl.length == 0 && submited">
+                        <label class="control-label" for="upload">
+                            <span ms-if="absoluteUrl.length == 0 && submited">请上传图片</span>
+                        </label>
+                        <label class="col-md-2 control-label">图片</label>
+                        <div class="col-md-8">
+                            <div class="img-show">
+                                <div class="show-iamge" ms-repeat-url="absoluteUrl">
+                                    <img id="upload" alt="" style="width: 100px; height: 100px" ms-attr-src="url"/>
+                                    <span class="cBtn spr db radius45" ms-click="remove($index)">
+                                        <i class="fa fa-minus"></i>
+                                    </span>
+                                </div>
+                                <div class="addtion-top">
+                                    <i class="addition"></i>
+                                    <div id="myupload" class="myload">
+                                        <input  id="fileToUpload"  type="file" name="imgFile" ms-duplex="tempUrl" onchange="upLoadImg()">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group has-feedback">
+                        <label class="col-md-2 control-label">商品简述</label>
+                        <div class="col-md-3">
+                            <input class="form-control" placeholder="商品简述" ms-duplex="model.shortDesc"/>
+                        </div>
+                    </div> -->
+                    <div class="form-group has-feedback" ms-class="has-warning:(model.shopPrice == '' || model.shopPrice <= 0) && submited">
+                        <label class="control-label" for="price">
+                            <span ms-if="model.shopPrice == '' && submited">请输入价格</span>
+                            <span ms-if="model.shopPrice <= 0 && submited">价格应大于零</span>
+                        </label>
+                        <label class="col-md-2 control-label">价格</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="price" placeholder="价格" ms-duplex="model.shopPrice"/>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback" ms-class="has-warning:model.discountedPrice <= 0 && submited">
+                        <label class="control-label" for="discountedPrice">
+                            <span ms-if="model.discountedPrice <= 0  && submited">价格应大于零</span>
+                        </label>
+                        <label class="col-md-2 control-label">折扣价</label>
+                        <div class="col-md-3">
+                            <input class="form-control" id="price" placeholder="折扣价" ms-duplex="model.discountedPrice"/>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group has-feedback">
+                        <label class="col-md-2 control-label">商品包装描述</label>
+                        <div class="col-md-3">
+                            <input class="form-control" placeholder="商品包装描述" v-model="model.keyTips"/>
+                        </div>
+                    </div> -->
+                    <div class="form-group has-feedback">
+                        <label class="col-md-2 control-label">标签</label>
+                        <div class="col-md-3">
+                            <input  class="form-control" placeholder="标签" ms-duplex="model.tag"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback" ms-class="has-warning:model.unit == '' && submited">
+                        <label class="control-label" for="unit">
+                            <span ms-if="model.unit == '' && submited">请选择单位</span>
+                        </label>
+                        <label class="col-md-2 control-label">单位</label>
+                        <div class="col-md-3">
+                            <select  class="form-control" id="unit" ms-duplex="model.unit">
+                                <option ms-repeat-item="dwList" ms-attr-value="{{item}}">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group has-feedbackp" v-bind:class="{'has-warning':$validation.goodstype.invalid}">
+                        <label class="control-label" for="goodstype">
+                            <span v-if="$validation.goodstype.required">请选择商品类型</span>
+                        </label>
+                        <label class="col-md-2 control-label">商品类型</label>
+                        <div class="col-md-3">
+                            <select class="form-control" id="goodstype" v-model="model.goodsType" v-validate:goodstype="{required: {rule:true ,initial:'off'}}">
+                                <option v-for="item in goodType" value="{{$index + 1}}">{{item}}</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="form-group has-feedback" >
+                        <label class="col-md-2 control-label">数量</label>
+                        <div class="col-md-3">
+                            <input class="form-control" placeholder="数量" ms-duplex="model.quantity" />
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback" ms-class="has-warning:model.categoryList.length <= 0 && submited">
+                    	<label class="control-label" for="unit">
+                            <span ms-if="model.categoryList.length <= 0 && submited">请选择分类</span>
+                        </label>
+                        <label class="col-md-2 control-label">商品分类</label>
+                        <div class="col-md-3">
+                            <ul id="goodsCateory" class="ztree"></ul>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group has-feedback" v-for="prop in skus">
+                        <label class="col-md-2 control-label"><span class="text-danger" ng-show="prop.isMust==1">*</span>{{prop.label}}：</label>
+                        <div class="col-md-8" v-if="prop.isSelect==1&&prop.isMulti==1">
+                            <label class="checkbox-inline" v-on:click="skuCheck(prop, value);" v-for="value in prop.valueList">
+                                <div class="icheckbox_flat-blue" v-bind:class="{'checked':value.isChecked}"></div>{{value.value}}
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <hr v-show="skus.length>0">
+                    <div class="form-group" v-show="skuChecked[0].length>0">
+                        <label class="col-md-2 control-label"><span class="text-danger">*</span>定价策略:</label>
+                        <div class="col-md-14">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="col-md-2 align-center"><span class="line"></span>商户类型</th>
+                                    <th class="col-md-2 align-center" v-for="prop in skus" v-show="skuChecked[$index].length>0">{{prop.label}}</th>
+                                    <th class="col-md-2 align-center"><span class="line"></span>价格</th>
+                                    <th class="col-md-2 align-center"><span class="line"></span>预设价</th>
+                                    <th class="col-md-2 align-center"><span class="line"></span>数量</th>
+                                </tr>
+                                </thead>
+                                <tbody  v-for="grouptype in grouptypeList" v-if="skuChecked[1].length!=0" >
+                                <template  v-for="(index1,skuOne) in skuChecked[0]">
+                                    <tr v-bind:class="{'first':$index==0}" v-for="(index2,skuTwo) in skuChecked[1]">
+                                        <td rowspan="{{skuChecked[0].length * skuChecked[1].length}}" v-if="index1==0&&index2==0">
+                                            <div class="align-center">
+                                                {{grouptype.name}}
+                                            </div>
+                                        </td>
+                                    <td rowspan="{{skuChecked[1].length}}" v-if="index2==0">
+                                        <div class="align-center">
+                                            {{skuOne.value}}
+                                            </div>
+                                    </td>
+                                    <td class="align-center">{{skuTwo.value}}</td>
+                                    <td><input type="number"  class="form-control" v-model="skuObj[grouptype.id+skuOne.id+skuTwo.id].showPrice"  min="0.01"></td>
+                                    <td>
+                                        <input type="number" class="form-control" v-model="skuObj[grouptype.id+skuOne.id+skuTwo.id].presetPrice"  min="0.01">
+                                    </td>
+
+                                    <td><input type="number" class="form-control"  v-model="skuObj[grouptype.id+skuOne.id+skuTwo.id].quantity" v-on:change="computerQuantity()"></td>
+                                    </tr>
+                                </template>
+                                </tbody>
+                                <tbody v-for="grouptype in grouptypeList" v-if="skuChecked[1].length==0">
+                                <tr v-bind:class="{'first':$index==0}" v-for="skuOne in skuChecked[0]">
+                                    <td rowspan="{{skuChecked[0].length}}" v-if="$index==0">{{grouptype.name}}</td>
+                                    <td  >
+                                        <div class="align-center">
+                                            {{skuOne.value}}
+                                            </div>
+                                    </td>
+                                    <td><input type="number"  min="0" class="form-control" v-model="skuObj[grouptype.id+skuOne.id].showPrice"></td>
+                                    <td><input type="number"  min="0" class="form-control" v-model="skuObj[grouptype.id+skuOne.id].presetPrice"></td>
+                                    <td><input type="number"  min="0" class="form-control" v-model="skuObj[grouptype.id+skuOne.id].quantity" v-on:change="computerQuantity()"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group" v-show="skuChecked[0].length==0">
+                        <label class="col-md-2 control-label"><span class="text-danger">*</span>定价策略:</label>
+                        <div class="col-md-12">
+                            <table class="table" id="table">
+                                <thead>
+                                <tr>
+                                    <th class="col-md-2 align-center"><span class="line"></span>商户类型</th>
+                                    <th class="col-md-2 align-center"><span class="line"></span>价格</th>
+                                    <th class="col-md-2 align-center"><span class="line"></span>预设价</th>
+                                    <th class="col-md-2 align-center"><span class="line"></span>数量</th>
+                                </tr>
+                                </thead>
+
+                                <tbody >
+                                <tr v-for="grouptype in grouptypeList">
+                                    <td >
+                                        {{grouptype.name}}
+                                    </td>
+                                    <td><input type="number"  min="0.01" class="form-control" v-model="grouptypeObj[grouptype.id].showPrice"></td>
+                                    <td><input type="number"  min="0.01" class="form-control" v-model="grouptypeObj[grouptype.id].presetPrice"></td>
+                                    <td><input type="number"  min="0" class="form-control" v-model="grouptypeObj[grouptype.id].quantity" v-on:change="computerQuantity()"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br> -->
+
+
+                    <!--<div class="form-group">是否上架</div>-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">描述</label>
+                        <div class="col-md-10">
+                            <textarea id="goodsDesc" name="content" ms-duplex="model.description" style="width:100%;height:300px;visibility:hidden;"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <button type="button" ms-click="onAdd()">提交</button>
+                            <button type="button" ms-click="goback">返回</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="common/plugins/avalon/avalon.js"></script>
+<script type="text/javascript" src="common/plugins/jQuery-ztree/jquery.ztree.all.min.js" > </script>
+<script type="text/javascript" src="common/plugins/kindeditor/kindeditor.js" > </script>
+<script type="text/javascript" src="common/plugins/fileupload/ajaxfileupload.js" > </script>
+<script type="text/javascript" src="js/tools.js" > </script>
+<script type="text/javascript" src="goods/js/goods_au.js" > </script>
+</html>

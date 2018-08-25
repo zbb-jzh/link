@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="common/plugins/jQuery-ztree/demo.css">
+    <link rel="stylesheet" href="common/plugins/jQuery-ztree/zTreeStyle.css">
+</head>
+<body >
+<div class="box"  ms-controller="goodscategory">
+    <div ms-click="toAdd()" class="btn-search" style="margin-right: 40px;margin-top:20px;" ms-if="hasAdd"><i></i>添加分类</div>
+    <div class="box-body mt60">
+        <div class="col-md-2">
+            <div class="ca-list">分类列表</div>
+            <ul id="goodsCateory" class="ztree"></ul>
+        </div>
+        <div class="col-md-9" style="float: right;">
+            <div class="right-top">编辑分类</div>
+                <div style="margin-top:20px;margin-bottom: 10px">
+                    <form role="form" class="form-horizontal">
+                        <!-- --><div class="form-group has-feedback">
+                            <label class="col-md-1 control-label">父分类</label>
+                            <div class="col-md-2">
+                                <select ms-duplex="category.parentId" class="form-control select2 " style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <option  value="">无</option>
+                                     <option ms-repeat-item="goodsCategoryList" ms-attr-value="{{item.id}}">{{item.name}}</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback" ms-class="has-warning:category.name == '' && submited">
+
+                            <label class="col-md-1 control-label">名称</label>
+                            <div class="col-md-3">
+                                <input class="form-control"  placeholder="商品分类名称" ms-duplex="category.name" id="name"/>
+                            </div>
+                            <label class="control-label" for="name">
+                                <span ms-if="category.name == '' && submited">请输入名称</span>
+                            </label>
+                        </div>
+                        <div class="col-md-3" style="margin-left: 70px;">
+                            <button ms-click="doAU" type="button" class="btn btn-sure" ms-if="category.id=='' && hasAdd">新增</button>
+                            <button ms-click="doAU" type="button" class="btn btn-sure" ms-if="category.id!='' && hasUpdate">修改</button>
+                            <button ms-click="doDelete" type="button"class="btn btn-cancel" ms-if="category.id!='' && hasDelete">删除</button>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="common/plugins/avalon/avalon.js"></script>
+<script type="text/javascript" src="common/plugins/jQuery-ztree/jquery.ztree.all.min.js" > </script>
+<script type="text/javascript" src="js/tools.js" > </script>
+<script type="text/javascript" src="goods/js/goods_category.js" > </script>
+</html>

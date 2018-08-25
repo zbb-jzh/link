@@ -1,0 +1,17 @@
+Table: consumer_consumer
+---------------+--------------+------+-----+---------+---------
+ Field         | Type         | Null | Key | Default | Remarks 
+---------------+--------------+------+-----+---------+---------
+ id            | VARCHAR(50)  | NO   | PRI |         |         
+ name          | VARCHAR(50)  | YES  |     |         |         
+ contactPerson | VARCHAR(50)  | YES  |     |         |         
+ phone         | VARCHAR(20)  | YES  |     |         |         
+ type          | INT(10)      | YES  |     |         | 1为个人2为企业
+ address       | VARCHAR(50)  | YES  |     |         |         
+ description   | VARCHAR(500) | YES  |     |         |         
+ createTime    | BIGINT(19)   | YES  |     |         |         
+ status        | INT(10)      | YES  |     |         |         
+ origin        | INT(10)      | YES  |     |         |         
+ parentId      | VARCHAR(50)  | YES  |     |         |         
+---------------+--------------+------+-----+---------+---------
+
