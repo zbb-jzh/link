@@ -83,7 +83,7 @@ public class ConsumerService {
 	 */
 	public Result update(Consumer consumer)
 	{
-		List<Consumer> model = Consumer.dao.find("select * from consumer_consumer where status = ? and parentId = ? and area = ? ", Constant.UN_DELETE, consumer.getParentId(), consumer.getArea());
+		Consumer model = Consumer.dao.findFirst("select * from consumer_consumer where status = ? and parentId = ? and area = ? ", Constant.UN_DELETE, consumer.getParentId(), consumer.getArea());
 		
 		if(model != null) {
 			return new Result(Constant.AREA_IS_ONE, "每个区域只能设置一人");
