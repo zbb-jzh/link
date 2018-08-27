@@ -1,0 +1,13 @@
+Table: bulletin_bulletin
+------------+--------------+------+-----+---------+---------
+ Field      | Type         | Null | Key | Default | Remarks 
+------------+--------------+------+-----+---------+---------
+ id         | VARCHAR(50)  | NO   | PRI |         |         
+ title      | VARCHAR(100) | YES  |     |         | 标题      
+ type       | INT(10)      | YES  |     |         | 类型      
+ sortNum    | INT(10)      | YES  |     |         | 排序      
+ submited   | INT(10)      | YES  |     |         | 是否发布，0不发部，1发布
+ createTime | BIGINT(19)   | YES  |     |         | 创建时间    
+ content    | VARCHAR(500) | YES  |     |         |         
+------------+--------------+------+-----+---------+---------
+

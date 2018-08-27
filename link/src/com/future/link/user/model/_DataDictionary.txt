@@ -14,5 +14,7 @@ Table: user_user
  status     | INT(10)     | YES  |     |         |         
  salary     | INT(10)     | YES  |     |         | 工资      
  post       | VARCHAR(50) | YES  |     |         | 岗位      
+ type       | INT(10)     | YES  |     |         | 1代表管理员，2代表会员
+ consumerId | VARCHAR(50) | YES  |     |         | 会员id    
 ------------+-------------+------+-----+---------+---------
 

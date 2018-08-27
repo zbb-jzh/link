@@ -3,16 +3,19 @@ package com.future.link.consumer.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jfinal.aop.Before;
 import com.jfinal.aop.Enhancer;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.tx.Tx;
 import com.future.link.common.Result;
 import com.future.link.consumer.model.Consumer;
 import com.future.link.goods.model.Category;
 import com.future.link.user.model.User;
 import com.future.link.utils.CommonUtil;
 import com.future.link.utils.Constant;
+import com.future.link.utils.MD5Util;
 import com.future.link.utils.ToolDateTime;
 
 public class ConsumerService {
@@ -24,6 +27,7 @@ public class ConsumerService {
 	 * @param user
 	 * @return
 	 */
+	@Before(Tx.class)
 	public Result add(Consumer consumer)
 	{
 		consumer.setId(CommonUtil.getUUID());
@@ -31,6 +35,17 @@ public class ConsumerService {
 		consumer.setOrigin(Consumer.ORIGIN_OFFLINE);
 		consumer.setCreateTime(ToolDateTime.getDateByTime());
 		consumer.save();
+		
+		User user = new User();
+		user.setId(CommonUtil.getUUID());
+		user.setConsumerId(consumer.getId());
+		user.setName(consumer.getUserName());
+		user.setPassword(MD5Util.generatePassword(consumer.getUserPwd()));
+		user.setPhone(consumer.getPhone());
+		user.setType(2);
+		user.setCreateTime(ToolDateTime.getDateByTime());
+		user.save();
+		
 		return new Result(Result.SUCCESS_STATUS, "添加成功");
 	}
 	
@@ -79,6 +94,20 @@ public class ConsumerService {
 		}
 		return new Result(Constant.SUCCESS, list);
 	}
+	
+	/**
+	 * 客户只能看到自己一下会员，获取，树形结构
+	 * @return
+	 */
+	public Result treeByConsumer(User user)
+	{
+		Consumer consumer = Consumer.dao.findById(user.getConsumerId());
+		
+		consumer.setNodes(getChildrenRecursive(consumer.getId()));
+		
+		return new Result(Constant.SUCCESS, consumer);
+	}
+	
 	
 	/**
 	 * 

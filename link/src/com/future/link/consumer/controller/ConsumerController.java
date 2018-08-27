@@ -1,13 +1,17 @@
 package com.future.link.consumer.controller;
 
+import com.future.link.base.interceptor.AuthorityInterceptor;
 import com.future.link.common.Result;
 import com.future.link.consumer.model.Consumer;
 import com.future.link.consumer.service.ConsumerService;
-import com.future.link.goods.service.CategoryService;
+import com.future.link.user.model.User;
+import com.future.link.utils.Constant;
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 
 public class ConsumerController extends Controller{
 	
+	@Before(AuthorityInterceptor.class)
 	public void doAdd()
 	{
 		Consumer consumer = this.getModel(Consumer.class);
@@ -19,6 +23,7 @@ public class ConsumerController extends Controller{
 		renderJson(ConsumerService.service.add(consumer));
 	}
 	
+	@Before(AuthorityInterceptor.class)
 	public void doGetById()
 	{
 		String id = this.getPara("id");
@@ -26,12 +31,14 @@ public class ConsumerController extends Controller{
 		renderJson(ConsumerService.service.getById(id));
 	}
 	
+	@Before(AuthorityInterceptor.class)
 	public void doDelete()
 	{
 		String id = this.getPara("id");
 		renderJson(ConsumerService.service.deleteById(id));
 	}
 	
+	@Before(AuthorityInterceptor.class)
 	public void doUpdate()
 	{
 		Consumer consumer = this.getModel(Consumer.class);
@@ -45,11 +52,19 @@ public class ConsumerController extends Controller{
 	/**
 	 * 获取，树形结构
 	 */
+	@Before(AuthorityInterceptor.class)
 	public void doTree()
 	{
-		renderJson(ConsumerService.service.tree());
+		
+		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
+		if(user.getType() == 2) {
+			renderJson(ConsumerService.service.treeByConsumer(user));
+		}else {
+			renderJson(ConsumerService.service.tree());
+		}
 	}
 	
+	@Before(AuthorityInterceptor.class)
 	public void doPage()
 	{
 		int pageNumber = this.getParaToInt("pageNumber");

@@ -43,6 +43,7 @@ public class UserService{
 		user.setId(CommonUtil.getUUID());
 		user.setStatus(Constant.UN_DELETE);
 		user.setCreateTime(ToolDateTime.getDateByTime());
+		user.setType(1);
 		user.save();
 		
 		if(StrKit.notBlank(roleIds)){

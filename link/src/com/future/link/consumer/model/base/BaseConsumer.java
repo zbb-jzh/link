@@ -97,4 +97,60 @@ public abstract class BaseConsumer<M extends BaseConsumer<M>> extends Model<M> i
 		return get("parentId");
 	}
 
+	public void setBankAccountName(java.lang.String bankAccountName) {
+		set("bankAccountName", bankAccountName);
+	}
+
+	public java.lang.String getBankAccountName() {
+		return get("bankAccountName");
+	}
+
+	public void setBankName(java.lang.String bankName) {
+		set("bankName", bankName);
+	}
+
+	public java.lang.String getBankName() {
+		return get("bankName");
+	}
+
+	public void setBankAddress(java.lang.String bankAddress) {
+		set("bankAddress", bankAddress);
+	}
+
+	public java.lang.String getBankAddress() {
+		return get("bankAddress");
+	}
+
+	public void setBankCard(java.lang.String bankCard) {
+		set("bankCard", bankCard);
+	}
+
+	public java.lang.String getBankCard() {
+		return get("bankCard");
+	}
+
+	public void setZipCode(java.lang.String zipCode) {
+		set("zipCode", zipCode);
+	}
+
+	public java.lang.String getZipCode() {
+		return get("zipCode");
+	}
+
+	public void setUserName(java.lang.String userName) {
+		set("userName", userName);
+	}
+
+	public java.lang.String getUserName() {
+		return get("userName");
+	}
+
+	public void setUserPwd(java.lang.String userPwd) {
+		set("userPwd", userPwd);
+	}
+
+	public java.lang.String getUserPwd() {
+		return get("userPwd");
+	}
+
 }

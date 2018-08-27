@@ -105,4 +105,20 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		return get("post");
 	}
 
+	public void setType(java.lang.Integer type) {
+		set("type", type);
+	}
+
+	public java.lang.Integer getType() {
+		return get("type");
+	}
+
+	public void setConsumerId(java.lang.String consumerId) {
+		set("consumerId", consumerId);
+	}
+
+	public java.lang.String getConsumerId() {
+		return get("consumerId");
+	}
+
 }

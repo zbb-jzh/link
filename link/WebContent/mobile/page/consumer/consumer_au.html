@@ -1,0 +1,150 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <title>index</title>
+		<link rel="stylesheet" href="../../frozen/css/frozen.css">
+        <link rel="stylesheet" href="../../demo.css">
+        <link rel="stylesheet" href="../../common/jQuery-ztree/demo.css">
+        <link rel="stylesheet" href="../../common/jQuery-ztree/zTreeStyle.css">
+        <script src="../../frozen/lib/zepto.min.js"></script>
+        <script src="../../frozen/js/frozen.js"></script>
+        <script src="../../jQuery/jQuery-2.2.0.min.js"></script>
+        <script src="../../avalon/avalon.js"></script>
+        <script type="text/javascript" src="../../common/jQuery-ztree/jquery.ztree.core.min.js" > </script>
+		<script type="text/javascript" src="../../common/jQuery-ztree/jquery.ztree.all.min.js" > </script>
+		<script type="text/javascript" src="../../common/tools.js" > </script>
+        <script src="consumer_au.js"></script>
+    </head>
+	<body ms-controller="consumerau">
+	
+		<div class="ui-form ui-border-t">
+    		<form action="">
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label>
+               			 姓名
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder="请输入用户名" ms-duplex="consumer.name">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			</a>
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label style="width:120px;">
+               			 银行持卡人姓名
+            		</label>
+            		<input type="text" style="line-height: 44px;padding-left: 120px;" placeholder="银行持卡人姓名" ms-duplex="consumer.bankAccountName">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			</a>
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label>
+               			 开户银行
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder="开户银行" ms-duplex="consumer.bankName">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			</a>
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label style="width:120px;">
+               			 开户银行所在地
+            		</label>
+            		<input type="text" style="line-height: 44px;padding-left: 120px;" placeholder="开户银行所在地" ms-duplex="consumer.bankAddress">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			</a>
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label>
+               			 卡号
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder="卡号" ms-duplex="consumer.bankCard">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			</a>
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label>
+               			 联系地址
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder=" 联系地址" ms-duplex="consumer.address">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			</a>
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label>
+               			 邮编
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder="邮编" ms-duplex="consumer.zipCode">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			</a>
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label>
+               			 手机号码
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder="手机号码" ms-duplex="consumer.phone">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			</a>
+        		</div>
+        		<div class="" style="width: 95px;text-align: left;-webkit-box-sizing: border-box;box-sizing: border-box;color: #777;">
+                        <label class="" style="padding-left: 17px;">客户系谱</label>
+                        <div class="" style="padding-left: 30px;">
+                            <ul id="goodsCateory" class="ztree"></ul>
+                        </div>
+                 </div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b" ms-if="!isUpdate">
+            		<label>
+               			 登录用户名
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder="登录用户名" ms-duplex="consumer.userName">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			</a>
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b" ms-if="!isUpdate">
+            		<label>
+               			 登录密码
+            		</label>
+            		<input type="password" style="line-height: 44px;" placeholder="登录密码" ms-duplex="consumer.userPwd">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			</a>
+        		</div>
+        	<!-- <div class="ui-form-item ui-form-item-link ui-border-b">
+            	<label>
+                	标题
+            	</label>
+        	</div> -->
+        	<div class="ui-btn-wrap" ms-click="add()">
+            	<button class="ui-btn-lg ui-btn-primary">
+               	 提交
+            	</button>
+        	</div>
+    </form>
+</div>
+		<div class="ui-dialog">
+			<div class="ui-dialog-cnt">
+				<header class="ui-dialog-hd ui-border-b">
+                  <h3>评价</h3>
+                  <i class="ui-dialog-close" data-role="button"></i>
+				</header>
+				<div class="ui-dialog-bd">
+					<div class="ui-form ui-border-t">
+						<form action="#">
+							<div class="ui-form-item ui-form-item-textarea  ui-form-item-pure ui-border-b">
+								
+								<textarea placeholder="评价内容"></textarea>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="ui-dialog-ft">
+					<button type="button" data-role="button">取消</button>
+					<button type="button" data-role="button">评价</button>
+				</div>
+			</div>        
+		</div>
+	</body>
+	
+	<script>
+	/* $(".ui-dialog").dialog("show"); */
+		//$('.ui-actionsheet').addClass('show');
+	</script>
+</html>
