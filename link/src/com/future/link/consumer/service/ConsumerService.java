@@ -30,6 +30,12 @@ public class ConsumerService {
 	@Before(Tx.class)
 	public Result add(Consumer consumer)
 	{
+		
+		Consumer model = Consumer.dao.findFirst("select * from consumer_consumer where status = ? and parentId is ? and area = ? ", Constant.UN_DELETE, consumer.getParentId(), consumer.getArea());
+		
+		if(model != null) {
+			return new Result(Constant.AREA_IS_ONE, "每个区域只能设置一人");
+		}
 		consumer.setId(CommonUtil.getUUID());
 		consumer.setStatus(Consumer.UN_DELETE);
 		consumer.setOrigin(Consumer.ORIGIN_OFFLINE);
@@ -77,6 +83,11 @@ public class ConsumerService {
 	 */
 	public Result update(Consumer consumer)
 	{
+		List<Consumer> model = Consumer.dao.find("select * from consumer_consumer where status = ? and parentId = ? and area = ? ", Constant.UN_DELETE, consumer.getParentId(), consumer.getArea());
+		
+		if(model != null) {
+			return new Result(Constant.AREA_IS_ONE, "每个区域只能设置一人");
+		}
 		consumer.update();
 		return new Result(Result.SUCCESS_STATUS, "修改成功");
 	}

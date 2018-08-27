@@ -118,6 +118,12 @@ public class Constant {
 	public static final int OLDPWD_IS_ERROR = -112;
 	
 	/**
+	 * 每个区域只能一个人
+	 */
+	public static final int AREA_IS_ONE = -113;
+	
+	
+	/**
 	 * 图片访问路径
 	 */
 	public static final String SYSTEM_IMAGE_URL = "system.image.url";

@@ -32,14 +32,32 @@ var setting = {
                 parent: true,
                 open: true
             }
+        },
+        callback: {
+            beforeCheck: zTreeBeforeCheck,
+            /*onClick: function (e, treeId, treeNode, clickFlag) { 
+            	zTreeObj.checkNode(treeNode, !treeNode.checked, true); 
+        }*/
         }
+        
     };
+
 var zTreeObj = null;
+
+function zTreeBeforeCheck(treeId, treeNode){
+	console.log(treeNode);
+	if(treeNode.nodes.length >= 2){
+		alert("每个客户下只能有两个系谱");
+		return false;
+	}
+	return true;
+    	
+}
 
 var vm = avalon.define({
 	$id:'consumerau',
 	consumerId:getUrlData('id'),
-	consumer:{id:'',name:'', type:'1', description:'',contactPerson:'',phone:'',contact:'',address:'',parentId:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',zipCode:'',userName:'',userPwd:''},
+	consumer:{id:'',name:'', type:'1',area:'1', description:'',contactPerson:'',phone:'',contact:'',address:'',parentId:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',zipCode:'',userName:'',userPwd:''},
 	submited:false,
 	isUpdate:false,
 	getConsumer:function()
@@ -83,7 +101,7 @@ var vm = avalon.define({
 				return;
 			}
 			$.ajax({
-			    url: "../。。/../consumer/doUpdate",    //请求的url地址
+			    url: "../../../consumer/doUpdate",    //请求的url地址
 			    dataType: "json",   //返回格式为json
 			    data: param({consumer: vm.consumer}),    //参数值
 			    type: "post",   //请求方式
@@ -130,6 +148,7 @@ var vm = avalon.define({
 		    		//vm.shopCategoryList = res.data;
 		    		console.log(res.data)
 		            zTreeObj = $.fn.zTree.init($("#goodsCateory"), setting, res.data);
+		    		var nodes = zTreeObj.getNodes();
 		            zTreeObj.expandAll(true);
 		            
 		            if(vm.consumer.id){
@@ -144,6 +163,9 @@ var vm = avalon.define({
 		    	console.log('error');
 		    }
 		});
+    },
+    zTreeBeforeCheck:function(treeId, treeNode){
+    	console.log(treeNode);
     },
 	goback:function()
 	{

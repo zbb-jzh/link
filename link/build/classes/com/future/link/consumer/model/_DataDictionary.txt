@@ -20,5 +20,6 @@ Table: consumer_consumer
  zipCode         | VARCHAR(20)  | YES  |     |         | 邮编      
  userName        | VARCHAR(50)  | YES  |     |         | 登陆名     
  userPwd         | VARCHAR(50)  | YES  |     |         | 密码      
+ area            | INT(10)      | YES  |     |         | 区域，1代表A区，2代表B区
 -----------------+--------------+------+-----+---------+---------
 

@@ -153,4 +153,12 @@ public abstract class BaseConsumer<M extends BaseConsumer<M>> extends Model<M> i
 		return get("userPwd");
 	}
 
+	public void setArea(java.lang.Integer area) {
+		set("area", area);
+	}
+
+	public java.lang.Integer getArea() {
+		return get("area");
+	}
+
 }
