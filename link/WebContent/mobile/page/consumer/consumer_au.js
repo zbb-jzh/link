@@ -108,7 +108,7 @@ var vm = avalon.define({
 			    success: function(res) {
 			    	if (res.status == 1) {
 			    		console.log('sucess');
-			    		vm.goback();
+			    		//vm.goback();
 	                }else{
 	                	alert(res.data);
 	                }
@@ -126,7 +126,7 @@ var vm = avalon.define({
 			    success: function(res) {
 			    	if (res.status == 1) {
 			    		console.log('sucess');
-			    		vm.goback();
+			    		//vm.goback();
 	                }else{
 	                	alert(res.data);
 	                }

@@ -3,20 +3,22 @@ package com.future.link.consumer.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.future.link.base.model.Setting;
+import com.future.link.base.service.SettingService;
+import com.future.link.common.Result;
+import com.future.link.consumer.model.Consumer;
+import com.future.link.consumer.model.Salary;
+import com.future.link.user.model.User;
+import com.future.link.utils.CommonUtil;
+import com.future.link.utils.Constant;
+import com.future.link.utils.MD5Util;
+import com.future.link.utils.ToolDateTime;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Enhancer;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
-import com.future.link.common.Result;
-import com.future.link.consumer.model.Consumer;
-import com.future.link.goods.model.Category;
-import com.future.link.user.model.User;
-import com.future.link.utils.CommonUtil;
-import com.future.link.utils.Constant;
-import com.future.link.utils.MD5Util;
-import com.future.link.utils.ToolDateTime;
 
 public class ConsumerService {
 	
@@ -28,7 +30,7 @@ public class ConsumerService {
 	 * @return
 	 */
 	@Before(Tx.class)
-	public Result add(Consumer consumer)
+	public Result add(Consumer consumer, User curUser)
 	{
 		
 		Consumer model = Consumer.dao.findFirst("select * from consumer_consumer where status = ? and parentId is ? and area = ? ", Constant.UN_DELETE, consumer.getParentId(), consumer.getArea());
@@ -51,6 +53,27 @@ public class ConsumerService {
 		user.setType(2);
 		user.setCreateTime(ToolDateTime.getDateByTime());
 		user.save();
+		
+		//参数设置
+		Setting setting = SettingService.service.getById();
+		//奖金
+		Salary salary = new Salary();
+		//推荐人获取广告奖
+		salary.setConsumerId(consumer.getParentId());
+		if(consumer.getArea() == 1) {
+			salary.setAAdvertisingaward(setting.getAAdvertisingaward());
+			salary.setManagementFee(salary.getAAdvertisingaward() * setting.getManagementFeeRatio()); //管理费
+			salary.setWithdrawalFee(salary.getAAdvertisingaward() * setting.getWithdrawalRatio());    //提现手续费
+			salary.setRealWage(salary.getAAdvertisingaward() - salary.getManagementFee() - salary.getWithdrawalFee()); //实发
+		}else {
+			salary.setBAdvertisingaward(setting.getBAdvertisingaward());
+			salary.setManagementFee(salary.getBAdvertisingaward() * setting.getManagementFeeRatio());
+			salary.setWithdrawalFee(salary.getBAdvertisingaward() * setting.getWithdrawalRatio());
+			salary.setRealWage(salary.getBAdvertisingaward() - salary.getManagementFee() - salary.getWithdrawalFee());
+		}
+		salary.setLayerAward(setting.getLayerAward());
+		
+		SalaryService.service.add(salary);
 		
 		return new Result(Result.SUCCESS_STATUS, "添加成功");
 	}

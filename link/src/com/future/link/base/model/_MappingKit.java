@@ -20,6 +20,7 @@ public class _MappingKit {
 		arp.addMapping("base_menu_btn", "id", MenuBtn.class);
 		arp.addMapping("base_role", "id", Role.class);
 		arp.addMapping("base_role_menu", "id", RoleMenu.class);
+		arp.addMapping("base_setting", "id", Setting.class);
 		arp.addMapping("base_user_role", "id", UserRole.class);
 	}
 }

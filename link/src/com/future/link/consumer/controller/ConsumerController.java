@@ -20,7 +20,8 @@ public class ConsumerController extends Controller{
 		{
 			renderJson(new Result(-1000, "数据为空"));
 		}
-		renderJson(ConsumerService.service.add(consumer));
+		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
+		renderJson(ConsumerService.service.add(consumer, user));
 	}
 	
 	@Before(AuthorityInterceptor.class)
