@@ -28,12 +28,12 @@ Table: consumer_salary
  Field              | Type        | Null | Key | Default | Remarks 
 --------------------+-------------+------+-----+---------+---------
  id                 | VARCHAR(50) | NO   | PRI |         |         
- layerAward         | DOUBLE(22)  | YES  |     |         | 层奖      
- a_advertisingAward | DOUBLE(22)  | YES  |     |         | a区广告奖   
- b_advertisingAward | DOUBLE(22)  | YES  |     |         | b区广告奖   
- managementFee      | DOUBLE(22)  | YES  |     |         | 管理费     
- withdrawalFee      | DOUBLE(22)  | YES  |     |         | 提现手续费   
- realWage           | DOUBLE(22)  | YES  |     |         | 实发工资    
+ layerAward         | DOUBLE(22)  | YES  |     | 0       | 层奖      
+ a_advertisingAward | DOUBLE(22)  | YES  |     | 0       | a区广告奖   
+ b_advertisingAward | DOUBLE(22)  | YES  |     | 0       | b区广告奖   
+ managementFee      | DOUBLE(22)  | YES  |     | 0       | 管理费     
+ withdrawalFee      | DOUBLE(22)  | YES  |     | 0       | 提现手续费   
+ realWage           | DOUBLE(22)  | YES  |     | 0       | 实发工资    
  createDate         | DATE(10)    | YES  |     |         | 日期      
  consumerId         | VARCHAR(50) | YES  |     |         | 客户id    
 --------------------+-------------+------+-----+---------+---------

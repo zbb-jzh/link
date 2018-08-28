@@ -65,11 +65,13 @@ public class ConsumerService {
 			salary.setManagementFee(salary.getAAdvertisingaward() * setting.getManagementFeeRatio()); //管理费
 			salary.setWithdrawalFee(salary.getAAdvertisingaward() * setting.getWithdrawalRatio());    //提现手续费
 			salary.setRealWage(salary.getAAdvertisingaward() - salary.getManagementFee() - salary.getWithdrawalFee()); //实发
+			salary.setBAdvertisingaward(0.0);
 		}else {
 			salary.setBAdvertisingaward(setting.getBAdvertisingaward());
 			salary.setManagementFee(salary.getBAdvertisingaward() * setting.getManagementFeeRatio());
 			salary.setWithdrawalFee(salary.getBAdvertisingaward() * setting.getWithdrawalRatio());
 			salary.setRealWage(salary.getBAdvertisingaward() - salary.getManagementFee() - salary.getWithdrawalFee());
+			salary.setAAdvertisingaward(0.0);
 		}
 		salary.setLayerAward(setting.getLayerAward());
 		
