@@ -87,7 +87,9 @@ public class ConsumerService {
 	 */
 	public Result getById(String id)
 	{
-		return new Result(Result.SUCCESS_STATUS, Consumer.dao.findById(id));
+		Consumer consumer = Consumer.dao.findById(id);
+		consumer.setPrizeCoin(SalaryService.service.searchSalary(id) - WithdrawService.service.searchWithdraw(id));
+		return new Result(Result.SUCCESS_STATUS, consumer);
 	}
 	
 	/**

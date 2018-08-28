@@ -3,13 +3,14 @@ package com.future.link.consumer.service;
 import java.util.Date;
 
 import com.future.link.consumer.model.Salary;
+import com.future.link.consumer.model.Withdraw;
 import com.future.link.utils.CommonUtil;
 import com.future.link.utils.ToolDateTime;
 import com.jfinal.aop.Enhancer;
 
-public class SalaryService {
+public class WithdrawService {
 	
-	public static final SalaryService service = Enhancer.enhance(SalaryService.class);
+	public static final WithdrawService service = Enhancer.enhance(WithdrawService.class);
 	
 	/**
 	 * 新增
@@ -51,13 +52,13 @@ public class SalaryService {
 	 * @param consumerId
 	 * @return
 	 */
-	public Double searchSalary(String consumerId) {
+	public Double searchWithdraw(String consumerId) {
 		
-		Salary salary = Salary.dao.findFirst("select sum(realWage) as realWage from consumer_salary WHERE consumerId = ?", consumerId);
-		if(salary.getRealWage() == null) {
+		Withdraw withdraw = Withdraw.dao.findFirst("select sum(withdrawCount) as withdrawCount from consumer_withdraw WHERE consumerId = ?", consumerId);
+		if(withdraw.getWithdrawCount() == null) {
 			return 0.0;
 		}
-		return salary.getRealWage();
+		return withdraw.getWithdrawCount();
 	}
 
 }
