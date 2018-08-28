@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <title>奖金币提现</title>
+		<link rel="stylesheet" href="../../frozen/css/frozen.css">
+        <link rel="stylesheet" href="../../demo.css">
+        <link rel="stylesheet" href="../../common/jQuery-ztree/demo.css">
+        <link rel="stylesheet" href="../../common/jQuery-ztree/zTreeStyle.css">
+        <script src="../../frozen/lib/zepto.min.js"></script>
+        <script src="../../frozen/js/frozen.js"></script>
+        <script src="../../jQuery/jQuery-2.2.0.min.js"></script>
+        <script src="../../avalon/avalon.js"></script>
+        <script type="text/javascript" src="../../common/jQuery-ztree/jquery.ztree.core.min.js" > </script>
+		<script type="text/javascript" src="../../common/jQuery-ztree/jquery.ztree.all.min.js" > </script>
+		<script type="text/javascript" src="../../common/tools.js" > </script>
+        <script src="consumer_withdraw.js"></script>
+    </head>
+	<body ms-controller="consumerwithdraw">
+	
+		<div class="ui-form ui-border-t">
+    		<form action="">
+    		<div class="ui-form-item ui-form-item-show ui-border-b" ms-if="!isUpdate">
+            		<label>
+               			 会员编号
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder="登录用户名" ms-attr-readonly="true" ms-duplex="consumer.userName">
+            			
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label>
+               			 会员姓名
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder="请输入用户名" ms-attr-readonly="true" ms-duplex="consumer.name">
+            			
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label style="width:120px;">
+               			 银行持卡人姓名
+            		</label>
+            		<input type="text" style="line-height: 44px;padding-left: 120px;" ms-attr-readonly="true" placeholder="银行持卡人姓名" ms-duplex="consumer.bankAccountName">
+            			
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label>
+               			 卡号
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder="卡号" ms-attr-readonly="true" ms-duplex="consumer.bankCard">
+            			
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label>
+               			 开户银行
+            		</label>
+            		<input type="text" style="line-height: 44px;" ms-attr-readonly="true" placeholder="开户银行" ms-duplex="consumer.bankName">
+            			
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label style="width:120px;">
+               			 开户银行所在地
+            		</label>
+            		<input type="text" style="line-height: 44px;padding-left: 120px;" ms-attr-readonly="true" placeholder="开户银行所在地" ms-duplex="consumer.bankAddress">
+            			
+        		</div>
+       
+        	<div class="ui-btn-wrap" ms-click="add()">
+            	<button class="ui-btn-lg ui-btn-primary">
+               	 提交
+            	</button>
+        	</div>
+    </form>
+</div>
+	</body>
+	
+	<script>
+	/* $(".ui-dialog").dialog("show"); */
+		//$('.ui-actionsheet').addClass('show');
+	</script>
+</html>
