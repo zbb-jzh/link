@@ -51,6 +51,20 @@ public class ConsumerController extends Controller{
 	}
 	
 	/**
+	 * 客户修改个人资料
+	 */
+	@Before(AuthorityInterceptor.class)
+	public void doUpdatePersonInfo()
+	{
+		Consumer consumer = this.getModel(Consumer.class);
+		if(null == consumer)
+		{
+			renderJson(new Result(-1000, "数据为空"));
+		}
+		renderJson(ConsumerService.service.doUpdatePersonInfo(consumer));
+	}
+	
+	/**
 	 * 获取，树形结构
 	 */
 	@Before(AuthorityInterceptor.class)
@@ -63,6 +77,17 @@ public class ConsumerController extends Controller{
 		}else {
 			renderJson(ConsumerService.service.tree());
 		}
+	}
+	
+	/**
+	 * 根据登录用户查询客户详细资料
+	 */
+	@Before(AuthorityInterceptor.class)
+	public void doGetByUser()
+	{
+		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
+		
+		renderJson(ConsumerService.service.getById(user.getConsumerId()));
 	}
 	
 	@Before(AuthorityInterceptor.class)

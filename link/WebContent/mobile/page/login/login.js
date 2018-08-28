@@ -22,7 +22,7 @@ var vm = avalon.define({
 	    success: function(res) {
 	    	if(res.status == 100){
 	    		 localStorage.setItem("userType", res.data.type);
-	    		window.location.href = "../index.html";
+	    		window.location.href = "../consumer/person_info.html";
 	    	}else{
 	    		alert(res.data);
 	    	}

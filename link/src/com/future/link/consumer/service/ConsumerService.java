@@ -117,6 +117,18 @@ public class ConsumerService {
 		return new Result(Result.SUCCESS_STATUS, "修改成功");
 	}
 	
+	
+	/**
+	 * 更新
+	 * @param user
+	 * @return
+	 */
+	public Result doUpdatePersonInfo(Consumer consumer)
+	{
+		consumer.update();
+		return new Result(Result.SUCCESS_STATUS, "修改成功");
+	}
+	
 	/**
 	 * 获取，树形结构
 	 * @return
