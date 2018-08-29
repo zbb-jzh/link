@@ -161,4 +161,12 @@ public abstract class BaseConsumer<M extends BaseConsumer<M>> extends Model<M> i
 		return get("area");
 	}
 
+	public void setPrizeCoin(java.lang.Double prizeCoin) {
+		set("prizeCoin", prizeCoin);
+	}
+
+	public java.lang.Double getPrizeCoin() {
+		return get("prizeCoin");
+	}
+
 }

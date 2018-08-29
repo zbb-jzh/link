@@ -2,20 +2,22 @@
  * 
  */
 
-
-
 var vm = avalon.define({
-	$id:'personinfo',
+	$id:'withdrawdetail',
 	consumerId:getUrlData('id'),
-	consumer:{id:'',name:'', type:'1',area:'1', description:'',contactPerson:'',phone:'',contact:'',address:'',parentId:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',zipCode:'',userName:'',userPwd:''},
+	consumer:{id:'',name:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',userName:'',prizeCoin:'0',withdrawCount:''},
+	consumerwithdraw:{consumerId:'',consumerName:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',userName:'',prizeCoin:'0',withdrawCount:''},
+	withdrawList:[],
 	submited:false,
+	isUpdate:false,
 	getConsumer:function()
 	{
 		
+			vm.isUpdate = true;
 			$.ajax({
 			    url: "../../../consumer/doGetByUser",    //请求的url地址
 			    dataType: "json",   //返回格式为json
-			    data: {id:vm.consumerId},    //参数值
+			    data: {},    //参数值
 			    type: "post",   //请求方式
 			    success: function(res) {
 			    	if (res.status == 1) {
@@ -31,16 +33,23 @@ var vm = avalon.define({
 	},
 	add:function()
 	{
-		
+		vm.consumerwithdraw.consumerId = vm.consumer.id;
+		vm.consumerwithdraw.consumerName = vm.consumer.name;
+		vm.consumerwithdraw.bankAccountName = vm.consumer.bankAccountName;
+		vm.consumerwithdraw.bankName = vm.consumer.bankName;
+		vm.consumerwithdraw.bankAddress = vm.consumer.bankAddress;
+		vm.consumerwithdraw.bankCard = vm.consumer.bankCard;
+		vm.consumerwithdraw.userName = vm.consumer.userName;
+		vm.consumerwithdraw.prizeCoin = vm.consumer.prizeCoin;
+		vm.consumerwithdraw.withdrawCount = vm.consumer.withdrawCount;
 			$.ajax({
-			    url: "../../../consumer/doUpdatePersonInfo",    //请求的url地址
+			    url: "../../../consumer/doAddWithDraw",    //请求的url地址
 			    dataType: "json",   //返回格式为json
-			    data: param({consumer: vm.consumer}),    //参数值
+			    data: param({withdraw: vm.consumerwithdraw}),    //参数值
 			    type: "post",   //请求方式
 			    success: function(res) {
 			    	if (res.status == 1) {
 			    		console.log('sucess');
-			    		vm.getConsumer();
 			    		//vm.goback();
 	                }else{
 	                	alert(res.data);
@@ -50,6 +59,9 @@ var vm = avalon.define({
 			    	console.log('error');
 			    }
 			});
+	},
+	removeInput:function(){
+		vm.consumer.withdrawCount = '';
 	},
 	goback:function()
 	{

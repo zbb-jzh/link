@@ -155,6 +155,8 @@ var vm = avalon.define({
 		            	zTreeObj.checkNode(zTreeObj.getNodeByParam("id", vm.consumer.parentId, null), true, true);
 		            }
 		            
+                }else if(res.status == -110){
+                	window.location.href = "../login/login.html";
                 }else{
                 	alert(res.data);
                 }

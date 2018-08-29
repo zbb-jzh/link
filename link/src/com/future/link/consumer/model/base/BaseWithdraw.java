@@ -81,4 +81,36 @@ public abstract class BaseWithdraw<M extends BaseWithdraw<M>> extends Model<M> i
 		return get("prizeCoin");
 	}
 
+	public void setConsumerId(java.lang.String consumerId) {
+		set("consumerId", consumerId);
+	}
+
+	public java.lang.String getConsumerId() {
+		return get("consumerId");
+	}
+
+	public void setWithdrawDate(java.util.Date withdrawDate) {
+		set("withdrawDate", withdrawDate);
+	}
+
+	public java.util.Date getWithdrawDate() {
+		return get("withdrawDate");
+	}
+
+	public void setDeduction(java.lang.Double deduction) {
+		set("deduction", deduction);
+	}
+
+	public java.lang.Double getDeduction() {
+		return get("deduction");
+	}
+
+	public void setRemark(java.lang.String remark) {
+		set("remark", remark);
+	}
+
+	public java.lang.String getRemark() {
+		return get("remark");
+	}
+
 }

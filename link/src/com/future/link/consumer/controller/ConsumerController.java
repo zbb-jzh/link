@@ -3,7 +3,9 @@ package com.future.link.consumer.controller;
 import com.future.link.base.interceptor.AuthorityInterceptor;
 import com.future.link.common.Result;
 import com.future.link.consumer.model.Consumer;
+import com.future.link.consumer.model.Withdraw;
 import com.future.link.consumer.service.ConsumerService;
+import com.future.link.consumer.service.WithdrawService;
 import com.future.link.user.model.User;
 import com.future.link.utils.Constant;
 import com.jfinal.aop.Before;
@@ -65,7 +67,21 @@ public class ConsumerController extends Controller{
 	}
 	
 	/**
-	 * 获取，树形结构
+	 * 客户修改个人资料
+	 */
+	@Before(AuthorityInterceptor.class)
+	public void doAddWithDraw()
+	{
+		Withdraw consumer = this.getModel(Withdraw.class);
+		if(null == consumer)
+		{
+			renderJson(new Result(-1000, "数据为空"));
+		}
+		renderJson(WithdrawService.service.add(consumer));
+	}
+	
+	/**
+	 * 获取，树形结构 
 	 */
 	@Before(AuthorityInterceptor.class)
 	public void doTree()

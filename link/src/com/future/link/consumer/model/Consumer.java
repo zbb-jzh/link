@@ -51,19 +51,5 @@ public class Consumer extends BaseConsumer<Consumer> {
 		this.put("nodes", nodes);
 		this.nodes = nodes;
 	}
-	
-	private Double prizeCoin;
-
-	public Double getPrizeCoin() {
-		
-		return prizeCoin;
-	}
-
-	public void setPrizeCoin(Double prizeCoin) {
-		this.put("prizeCoin", prizeCoin);
-		this.prizeCoin = prizeCoin;
-	}
-	
-	
 
 }

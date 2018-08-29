@@ -20,34 +20,35 @@
 	<body ms-controller="consumerwithdraw">
 	
 		<div class="ui-form ui-border-t">
-    		<form action="">
+    		<form>
     		<div class="ui-form-item ui-form-item-show ui-border-b" ms-if="!isUpdate">
             		<label>
                			 会员编号
             		</label>
-            		<input type="text" style="line-height: 44px;" placeholder="登录用户名" ms-attr-readonly="true" ms-duplex="consumer.userName">
+            		<input type="text" style="line-height: 44px;" placeholder="" ms-attr-readonly="true" ms-duplex="consumer.userName">
             			
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b">
             		<label>
                			 会员姓名
             		</label>
-            		<input type="text" style="line-height: 44px;" placeholder="请输入用户名" ms-attr-readonly="true" ms-duplex="consumer.name">
+            		<input type="text" style="line-height: 44px;" placeholder="" ms-attr-readonly="true" ms-duplex="consumer.name">
             			
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b">
             		<label>
                			 奖金币
             		</label>
-            		<input type="text" style="line-height: 44px;" placeholder="请输入用户名" ms-attr-readonly="true" ms-duplex="consumer.prizeCoin">
-         
+            		<input type="text" style="line-height: 44px;" placeholder="" ms-attr-readonly="true" ms-duplex="consumer.prizeCoin">
+         			
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b">
             		<label>
                			 领取金额
             		</label>
             		<input type="text" style="line-height: 44px;" placeholder=""  ms-duplex="consumer.withdrawCount">
-            			
+            			<!-- <a href="#" class="ui-icon-close" ms-click="removeInput()" ms-show="consumer.withdrawCount">
+            			</a> -->
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b">
             		<label style="width:120px;">
