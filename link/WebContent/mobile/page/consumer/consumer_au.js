@@ -42,12 +42,47 @@ var setting = {
         
     };
 
+var referrersetting = {
+        treeNodeKey: "id",
+        treeNodeParentKey: "parentId",
+
+//        view: {
+//            dblClickExpand: true
+//        },
+        check: {
+            enable: true,
+            chkStyle: "radio",  //单选框
+            radioType: "all"   //对所有节点设置单选
+//            chkStyle: "checkbox",
+//            chkboxType: {
+//                "Y": "ps", "N": "ps"
+//            }
+        },
+        data: {
+            simpleData: {
+                enable: true,
+                idKey: "id",
+                pIdKey: "parentId"
+
+            },
+            key: {
+                children: "nodes"
+            }, keep: {
+                parent: true,
+                open: true
+            }
+        }
+        
+    };
+
 var zTreeObj = null;
+
+var referrerztree = null;
 
 function zTreeBeforeCheck(treeId, treeNode){
 	console.log(treeNode);
 	if(treeNode.nodes.length >= 2){
-		alert("每个客户下只能有两个系谱");
+		alert("每个客户下只能有两个接点");
 		return false;
 	}
 	return true;
@@ -57,7 +92,7 @@ function zTreeBeforeCheck(treeId, treeNode){
 var vm = avalon.define({
 	$id:'consumerau',
 	consumerId:getUrlData('id'),
-	consumer:{id:'',name:'', type:'1',area:'1', description:'',contactPerson:'',phone:'',contact:'',address:'',parentId:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',zipCode:'',userName:'',userPwd:''},
+	consumer:{id:'',name:'', type:'1',area:'1', description:'',contactPerson:'',phone:'',contact:'',address:'',referrerId:'',parentId:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',zipCode:'',userName:'',userPwd:''},
 	submited:false,
 	isUpdate:false,
 	getConsumer:function()
@@ -94,6 +129,15 @@ var vm = avalon.define({
             	vm.consumer.parentId = nodes[i].id;
             }
         }
+        
+        var referrernodes = referrerztree.getCheckedNodes();
+		if (null != referrernodes) {
+            for (var i = 0; i < referrernodes.length; i++) {
+                
+            	vm.consumer.referrerId = referrernodes[i].id;
+            }
+        }
+		
 		if(vm.consumerId)
 		{
 			if(vm.consumerId == vm.consumer.parentId){
@@ -150,6 +194,9 @@ var vm = avalon.define({
 		            zTreeObj = $.fn.zTree.init($("#goodsCateory"), setting, res.data);
 		    		var nodes = zTreeObj.getNodes();
 		            zTreeObj.expandAll(true);
+		            
+		            referrerztree = $.fn.zTree.init($("#referrerztree"), referrersetting, res.data);
+		            referrerztree.expandAll(true);
 		            
 		            if(vm.consumer.id){
 		            	zTreeObj.checkNode(zTreeObj.getNodeByParam("id", vm.consumer.parentId, null), true, true);

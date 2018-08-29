@@ -1,5 +1,7 @@
 package com.future.link.consumer.service;
 
+import java.util.List;
+
 import com.future.link.common.Result;
 import com.future.link.consumer.model.Withdraw;
 import com.future.link.utils.CommonUtil;
@@ -35,6 +37,16 @@ public class WithdrawService {
 			return 0.0;
 		}
 		return withdraw.getWithdrawCount();
+	}
+	
+	/**
+	 * 获取客户提现记录
+	 * @param 
+	 */
+	public Result searchWithdraws(String consumerId) {
+		
+		List<Withdraw> list = Withdraw.dao.find("select * from consumer_withdraw WHERE consumerId = ?", consumerId);
+		return new Result(Result.SUCCESS_STATUS, list);
 	}
 
 }

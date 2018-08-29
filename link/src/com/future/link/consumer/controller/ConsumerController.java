@@ -106,6 +106,17 @@ public class ConsumerController extends Controller{
 		renderJson(ConsumerService.service.getById(user.getConsumerId()));
 	}
 	
+	/**
+	 * 获取用户提现记录
+	 */
+	@Before(AuthorityInterceptor.class)
+	public void doSearchWithdraw()
+	{
+		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
+		
+		renderJson(WithdrawService.service.searchWithdraws(user.getConsumerId()));
+	}
+	
 	@Before(AuthorityInterceptor.class)
 	public void doPage()
 	{

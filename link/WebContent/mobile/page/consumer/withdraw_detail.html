@@ -19,17 +19,26 @@
     </head>
 	<body ms-controller="withdrawdetail">
 	
-		<!-- <div class="ui-form ui-border-t"> -->
-    		<div class="ui-row-flex ui-whitespace">
-    			<div class="ui-col ui-col">平均分</div>
-    			<div class="ui-col ui-col">平均分</div>
-    			<div class="ui-col ui-col">平均分</div>
-   	 			<div class="ui-col ui-col">平均分</div>
-   	 			<div class="ui-col ui-col">平均分</div>
-   	 			<div class="ui-col ui-col">平均分</div>
-   	 			<div class="ui-col ui-col">平均分</div>
-			</div>
-		<!-- </div> -->
+		<ul class="ui-list ui-border-tb">
+    	<li ms-repeat-item="withdrawList">
+        	<!-- <div class="ui-list-thumb">
+            	<span style="background-image:url(http://placeholder.qiniudn.com/80x80)"></span>
+        	</div> -->
+        	<div class="ui-list-info ui-border-t">
+            	<p>编号：{{item.userName}}</p>
+            	<p>姓名：{{item.consumerName}}</p>
+            	<p>银行持卡人姓名：{{item.bankAccountName}}</p>
+            	<p>金额：{{item.withdrawCount}}</p>
+            	<p>扣车款：{{item.deduction}}</p>
+            	<p>实发：{{item.withdrawCount}}</p>
+            	<p>开户銀行：{{item.bankName}}</p>
+            	<p>银行所在地：{{item.bankAddress}}</p>
+            	<p>卡号：{{item.bankCard}}</p>
+            	<p>领取日期：{{item.withdrawDate}}</p>
+            	<p>备注：{{item.remark}}</p>
+        	</div>
+    	</li>
+	</ul>
 	</body>
 	
 	<script>

@@ -58,7 +58,7 @@ public class ConsumerService {
 		Setting setting = SettingService.service.getById();
 		//奖金
 		Salary salary = new Salary();
-		//推荐人获取广告奖
+		//节点人获取广告奖
 		salary.setConsumerId(consumer.getParentId());
 		if(consumer.getArea() == 1) {
 			salary.setAAdvertisingaward(setting.getAAdvertisingaward());
@@ -76,6 +76,30 @@ public class ConsumerService {
 		salary.setLayerAward(setting.getLayerAward());
 		
 		SalaryService.service.add(salary);
+		
+		//如果节点人和推荐人不一样，那么推荐人也得到相应的广告奖金
+		if(!consumer.getParentId().equals(consumer.getReferrerId())) {
+			//奖金
+			Salary referrersalary = new Salary();
+			//节点人获取广告奖
+			referrersalary.setConsumerId(consumer.getReferrerId());
+			if(consumer.getArea() == 1) {
+				referrersalary.setAAdvertisingaward(setting.getAAdvertisingaward());
+				referrersalary.setManagementFee(referrersalary.getAAdvertisingaward() * setting.getManagementFeeRatio()); //管理费
+				referrersalary.setWithdrawalFee(referrersalary.getAAdvertisingaward() * setting.getWithdrawalRatio());    //提现手续费
+				referrersalary.setRealWage(referrersalary.getAAdvertisingaward() - referrersalary.getManagementFee() - referrersalary.getWithdrawalFee()); //实发
+				referrersalary.setBAdvertisingaward(0.0);
+			}else {
+				referrersalary.setBAdvertisingaward(setting.getBAdvertisingaward());
+				referrersalary.setManagementFee(referrersalary.getBAdvertisingaward() * setting.getManagementFeeRatio());
+				referrersalary.setWithdrawalFee(referrersalary.getBAdvertisingaward() * setting.getWithdrawalRatio());
+				referrersalary.setRealWage(referrersalary.getBAdvertisingaward() - referrersalary.getManagementFee() - referrersalary.getWithdrawalFee());
+				referrersalary.setAAdvertisingaward(0.0);
+			}
+			referrersalary.setLayerAward(setting.getLayerAward());
+			
+			SalaryService.service.add(referrersalary);
+		}
 		
 		return new Result(Result.SUCCESS_STATUS, "添加成功");
 	}

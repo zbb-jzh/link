@@ -169,4 +169,12 @@ public abstract class BaseConsumer<M extends BaseConsumer<M>> extends Model<M> i
 		return get("prizeCoin");
 	}
 
+	public void setReferrerId(java.lang.String referrerId) {
+		set("referrerId", referrerId);
+	}
+
+	public java.lang.String getReferrerId() {
+		return get("referrerId");
+	}
+
 }

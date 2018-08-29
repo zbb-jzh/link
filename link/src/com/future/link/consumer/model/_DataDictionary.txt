@@ -22,6 +22,7 @@ Table: consumer_consumer
  userPwd         | VARCHAR(50)  | YES  |     |         | 密码      
  area            | INT(10)      | YES  |     |         | 区域，1代表A区，2代表B区
  prizeCoin       | DOUBLE(22)   | YES  |     | 0       | 奖金币     
+ referrerId      | VARCHAR(50)  | YES  |     |         | 推荐人     
 -----------------+--------------+------+-----+---------+---------
 
 Table: consumer_salary

@@ -15,13 +15,13 @@ var vm = avalon.define({
 		
 			vm.isUpdate = true;
 			$.ajax({
-			    url: "../../../consumer/doGetByUser",    //请求的url地址
+			    url: "../../../consumer/doSearchWithdraw",    //请求的url地址
 			    dataType: "json",   //返回格式为json
 			    data: {},    //参数值
 			    type: "post",   //请求方式
 			    success: function(res) {
 			    	if (res.status == 1) {
-			    		vm.consumer = res.data;
+			    		vm.withdrawList = res.data;
 	                }else if(res.status == -110){
 	                	window.location.href = "../login/login.html";
 	                }
