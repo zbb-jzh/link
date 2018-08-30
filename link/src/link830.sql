@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : local
-Source Server Version : 50641
+Source Server Version : 50639
 Source Host           : localhost:3306
 Source Database       : link
 
 Target Server Type    : MYSQL
-Target Server Version : 50641
+Target Server Version : 50639
 File Encoding         : 65001
 
-Date: 2018-08-28 21:58:34
+Date: 2018-08-30 14:14:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -225,33 +225,37 @@ CREATE TABLE `consumer_consumer` (
   `userName` varchar(50) DEFAULT NULL COMMENT '登陆名',
   `userPwd` varchar(50) DEFAULT NULL COMMENT '密码',
   `area` int(5) DEFAULT NULL COMMENT '区域，1代表A区，2代表B区',
+  `prizeCoin` double DEFAULT '0' COMMENT '奖金币',
+  `referrerId` varchar(50) DEFAULT NULL COMMENT '推荐人',
+  `twoPassword` varchar(50) DEFAULT NULL COMMENT '二级密码',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of consumer_consumer
 -- ----------------------------
-INSERT INTO `consumer_consumer` VALUES ('152b03fb957246ce99d273ea1576dad0', '543456745', '76547', '547657', '1', '68', '6574645645', '1488524629771', '1', '1', null, null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('24fa50fcbb334fd6b0cc384702d6342e', '654', '634534', '5345', '1', '5345', '34654654', '1488524654108', '1', '1', null, null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('314a9c2910394507b58a50b581d40775', '12321', '32', '4353', '1', '45345', '34534534', '1488524623195', '1', '1', null, null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('492a39d942bf46628b743715453d5d59', 'jj', null, '110', '1', '76hao', null, '1535443059110', '0', '1', null, 'zhfdfd', 'fffr', 'lx ', '234412', '3279', 'zbb002', 'vv123', '2');
-INSERT INTO `consumer_consumer` VALUES ('4c68997a69514359956c1c7bf7053db0', '腊月', null, '113', '1', '亳州', null, '1535439069483', '1', '1', '9be802f26d384bc98224b3f70a4887b3', '更好', '中行', '亳州', '234434363', '2356', '1122', '123456', '1');
-INSERT INTO `consumer_consumer` VALUES ('55ae1269edff4ae4a4986880f733cd1e', '一号', '一号', '15551591960', '1', '76号', null, '1535070203226', '1', '1', '9b82792058724dac97359499cfda667e', null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('58f1df78fa2f48a8a10b7c72a79cb15a', '再', null, '13368954875', '1', '56', null, '1535351952332', '1', '1', 'cc2963d175fa407589cdb2f581232d40', '郑冰冰', '农业银行', '亳州', '1231232423', '236800', 'zbb', '123456', null);
-INSERT INTO `consumer_consumer` VALUES ('5e1e585793bc4fafa0acccce9e6797c2', '654645', '6456', '54654', '1', '64564', '56456456', '1488524638203', '1', '1', null, null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('73cf1ea6a07e47e18c86a5b122af2e29', '456456', '546', '546456', '2', '4564', '5645654', '1488524662508', '1', '1', null, null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('8566ffa07f4c485fbf83748ff5105a35', '56856', '568568', '65856', '1', '86585', '685685', '1488524699171', '1', '1', null, null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('98867fb70ce64546b9ec03095bd1a3e1', '123', '1321', '312312', '1', '31231', '23123123', '1488524612531', '1', '1', null, null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('98e7c4b7e08449259c6fcf05aeb87faa', '123dfg', '1321', '312312', '1', '31231', '23123123', '1488524732923', '1', '1', '55ae1269edff4ae4a4986880f733cd1e', null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('9b82792058724dac97359499cfda667e', '2222222222', '222222222', '222222222222', '1', '2222222222222', '222222222222222222', '1497940089566', '1', '1', null, null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('9be802f26d384bc98224b3f70a4887b3', '456546', '54645', '6456', '1', '45645', '645645656', '1488524647379', '1', '1', null, null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('abe3da32b5044b84aa0926becb3afe39', '5686', '5856', '8568', '1', '568', '56856856', '1488524708898', '1', '1', '8566ffa07f4c485fbf83748ff5105a35', null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('b5939422ef1144f9aedafd2f2f680c98', '郑冰冰', null, '1156', '1', '34号', null, '1535354164582', '1', '1', '24fa50fcbb334fd6b0cc384702d6342e', '郑冰冰', '农行', '亳州', '132546565465', '236800', 'zbb', '123456', null);
-INSERT INTO `consumer_consumer` VALUES ('cb67fa24992e4cdaa1ca0463b8a09082', '6756', null, '567', '1', '657567', null, '1535445917371', '1', '1', '9be802f26d384bc98224b3f70a4887b3', '56765', '中国人民银行1', '65765', '7567', '567567', '1133', '123456', '2');
-INSERT INTO `consumer_consumer` VALUES ('cc004658da964e6aa98c5545be5b5285', '1238888888', '1321', '312312', '1', '31231', '23123123122', '1488524828244', '0', '1', null, null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('cc2963d175fa407589cdb2f581232d40', '345345', '34534', '6346', '1', '34634', '63463463', '1488524689668', '1', '1', null, null, null, null, null, null, null, null, null);
-INSERT INTO `consumer_consumer` VALUES ('d07c2ac0fef5422fa06f7d899e8fbaab', '65645', '6456', '7658', '1', '56856', '856857856', '1488524716915', '1', '1', '9b82792058724dac97359499cfda667e', '66', '建行', '利辛', '32456456', '3455524', null, null, '1');
-INSERT INTO `consumer_consumer` VALUES ('d800bea05ee445da841e3aeec5ca8eec', '1239999999999999999', '1321', '312312', '1', '31231', '23123123', '1488524757123', '1', '1', null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('152b03fb957246ce99d273ea1576dad0', '543456745', '76547', '547657', '1', '68', '6574645645', '1488524629771', '1', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('24fa50fcbb334fd6b0cc384702d6342e', '654', '634534', '5345', '1', '5345', '34654654', '1488524654108', '1', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('314a9c2910394507b58a50b581d40775', '12321', '32', '4353', '1', '45345', '34534534', '1488524623195', '1', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('492a39d942bf46628b743715453d5d59', 'jj', null, '110', '1', '76hao', null, '1535443059110', '0', '1', null, 'zhfdfd', 'fffr', 'lx ', '234412', '3279', 'zbb002', 'vv123', '2', null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('4c68997a69514359956c1c7bf7053db0', '腊月', null, '113', '1', '亳州', null, '1535439069483', '1', '1', '9be802f26d384bc98224b3f70a4887b3', '更好', '中行', '亳州', '234434363', '2356', '1122', '123456', '1', null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('55ae1269edff4ae4a4986880f733cd1e', '一号', '一号', '15551591960', '1', '76号', null, '1535070203226', '1', '1', '9b82792058724dac97359499cfda667e', null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('58f1df78fa2f48a8a10b7c72a79cb15a', '再', null, '13368954875', '1', '56', null, '1535351952332', '1', '1', 'cc2963d175fa407589cdb2f581232d40', '郑冰冰', '农业银行', '亳州', '1231232423', '236800', 'zbb', '123456', null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('5e1e585793bc4fafa0acccce9e6797c2', '654645', '6456', '54654', '1', '64564', '56456456', '1488524638203', '1', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('73cf1ea6a07e47e18c86a5b122af2e29', '456456', '546', '546456', '2', '4564', '5645654', '1488524662508', '1', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('8566ffa07f4c485fbf83748ff5105a35', '56856', '568568', '65856', '1', '86585', '685685', '1488524699171', '1', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('98867fb70ce64546b9ec03095bd1a3e1', '123', '1321', '312312', '1', '31231', '23123123', '1488524612531', '1', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('98e7c4b7e08449259c6fcf05aeb87faa', '123dfg', '1321', '312312', '1', '31231', '23123123', '1488524732923', '1', '1', '55ae1269edff4ae4a4986880f733cd1e', null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('9b82792058724dac97359499cfda667e', '2222222222', '222222222', '222222222222', '1', '2222222222222', '222222222222222222', '1497940089566', '1', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('9be802f26d384bc98224b3f70a4887b3', '456546', '54645', '6456', '1', '45645', '645645656', '1488524647379', '1', '1', null, '435435', '43543', '5345', '345', '435345', '888888', '123456', null, '1275', null, null);
+INSERT INTO `consumer_consumer` VALUES ('abe3da32b5044b84aa0926becb3afe39', '5686', '5856', '8568', '1', '568', '56856856', '1488524708898', '1', '1', '8566ffa07f4c485fbf83748ff5105a35', null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('b5939422ef1144f9aedafd2f2f680c98', '郑冰冰', null, '1156', '1', '34号', null, '1535354164582', '1', '1', '24fa50fcbb334fd6b0cc384702d6342e', '郑冰冰', '农行', '亳州', '132546565465', '236800', 'zbb', '123456', null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('cb67fa24992e4cdaa1ca0463b8a09082', '6756', null, '567', '1', '657567', null, '1535445917371', '1', '1', '9be802f26d384bc98224b3f70a4887b3', '56765', '中国人民银行1', '65765', '7567', '567567', '1133', '123456', '2', null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('cc004658da964e6aa98c5545be5b5285', '1238888888', '1321', '312312', '1', '31231', '23123123122', '1488524828244', '0', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('cc2963d175fa407589cdb2f581232d40', '345345', '34534', '6346', '1', '34634', '63463463', '1488524689668', '1', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('d07c2ac0fef5422fa06f7d899e8fbaab', '65645', '6456', '7658', '1', '56856', '856857856', '1488524716915', '1', '1', '9b82792058724dac97359499cfda667e', '66', '建行', '利辛', '32456456', '3455524', null, null, '1', null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('d800bea05ee445da841e3aeec5ca8eec', '1239999999999999999', '1321', '312312', '1', '31231', '23123123', '1488524757123', '1', '1', null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `consumer_consumer` VALUES ('e79c84f58f6a48649ea4b1937b0361ca', '行程表', null, '117', '1', '亳州', null, '1535534105732', '1', '1', '4c68997a69514359956c1c7bf7053db0', '表达', '农行', '亳州', '2342343124', '236789', '999999', '123456', '1', '0', '9be802f26d384bc98224b3f70a4887b3', null);
 
 -- ----------------------------
 -- Table structure for `consumer_salary`
@@ -274,6 +278,7 @@ CREATE TABLE `consumer_salary` (
 -- Records of consumer_salary
 -- ----------------------------
 INSERT INTO `consumer_salary` VALUES ('a129679b368c4d7b8f3a83a25f441531', '0', '1000', '500', '150', '75', '1275', '2018-08-28', '9be802f26d384bc98224b3f70a4887b3');
+INSERT INTO `consumer_salary` VALUES ('f5e1012efdd94bdfacdf707800170f6d', '0', '2000', '0', '200', '100', '1700', '2018-08-29', '4c68997a69514359956c1c7bf7053db0');
 
 -- ----------------------------
 -- Table structure for `consumer_withdraw`
@@ -290,12 +295,16 @@ CREATE TABLE `consumer_withdraw` (
   `bankAddress` varchar(50) DEFAULT NULL COMMENT '银行所在地',
   `prizeCoin` double DEFAULT NULL COMMENT '奖金币',
   `consumerId` varchar(50) DEFAULT NULL,
+  `withdrawDate` datetime DEFAULT NULL COMMENT '提先日期',
+  `deduction` double DEFAULT '0' COMMENT '扣车库',
+  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of consumer_withdraw
 -- ----------------------------
+INSERT INTO `consumer_withdraw` VALUES ('db145d14ec6748c1907c890c6478d4c0', '888888', '456546', '100', '435435', '345', '43543', '5345', '1275', '9be802f26d384bc98224b3f70a4887b3', '2018-08-29 00:00:00', '0', null);
 
 -- ----------------------------
 -- Table structure for `goods_category`
@@ -383,14 +392,17 @@ CREATE TABLE `user_user` (
   `post` varchar(50) DEFAULT NULL COMMENT '岗位',
   `type` int(5) DEFAULT NULL COMMENT '1代表管理员，2代表会员',
   `consumerId` varchar(50) DEFAULT NULL COMMENT '会员id',
+  `twoPassword` varchar(50) DEFAULT NULL COMMENT '二级密码',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_user
 -- ----------------------------
-INSERT INTO `user_user` VALUES ('00b400149b9649b0835ab2a3f2df8d72', 'zbb', '1156', 'E10ADC3949BA59ABBE56E057F20F883E', null, null, null, null, '1535354169217', null, null, null, '2', 'b5939422ef1144f9aedafd2f2f680c98');
-INSERT INTO `user_user` VALUES ('1389aab5319444b896212967d25101fb', 'admin', '110', 'E10ADC3949BA59ABBE56E057F20F883E', null, '1', '', '', '1535075811644', '1', '10000', '老总', '1', null);
-INSERT INTO `user_user` VALUES ('315d3e48dc694c1faef8b0dccdce4a24', 'zbb002', '110', '4EFC8C88B17BD6760903E4EBC4F06043', null, null, null, null, '1535443059152', null, null, null, '2', '492a39d942bf46628b743715453d5d59');
-INSERT INTO `user_user` VALUES ('7f32c9cf1ccf4aaf9d5f40129c37f16c', '0001124', '13345265263', 'E10ADC3949BA59ABBE56E057F20F883E', null, '1', '23@12.com', '亳州', '1499048728040', '1', null, null, '1', null);
-INSERT INTO `user_user` VALUES ('963f519fe47b48a08b8dff4ee1a639b1', '1133', '567', 'E10ADC3949BA59ABBE56E057F20F883E', null, null, null, null, '1535445917414', null, null, null, '2', 'cb67fa24992e4cdaa1ca0463b8a09082');
+INSERT INTO `user_user` VALUES ('00b400149b9649b0835ab2a3f2df8d72', 'zbb', '1156', 'E10ADC3949BA59ABBE56E057F20F883E', null, null, null, null, '1535354169217', null, null, null, '2', 'b5939422ef1144f9aedafd2f2f680c98', null);
+INSERT INTO `user_user` VALUES ('1389aab5319444b896212967d25101fb', 'admin', '110', 'E10ADC3949BA59ABBE56E057F20F883E', null, '1', '', '', '1535075811644', '1', '10000', '老总', '1', null, null);
+INSERT INTO `user_user` VALUES ('234354365467457456456', '888888', '110', 'E10ADC3949BA59ABBE56E057F20F883E', null, null, null, null, null, null, null, null, '2', '9be802f26d384bc98224b3f70a4887b3', 'E10ADC3949BA59ABBE56E057F20F883E');
+INSERT INTO `user_user` VALUES ('315d3e48dc694c1faef8b0dccdce4a24', 'zbb002', '110', '4EFC8C88B17BD6760903E4EBC4F06043', null, null, null, null, '1535443059152', null, null, null, '2', '492a39d942bf46628b743715453d5d59', null);
+INSERT INTO `user_user` VALUES ('7f32c9cf1ccf4aaf9d5f40129c37f16c', '0001124', '13345265263', 'E10ADC3949BA59ABBE56E057F20F883E', null, '1', '23@12.com', '亳州', '1499048728040', '1', null, null, '1', null, null);
+INSERT INTO `user_user` VALUES ('86246d7560914ceaa311c30b43c879d1', '999999', '117', 'E10ADC3949BA59ABBE56E057F20F883E', null, null, null, null, '1535534105743', null, null, null, '2', 'e79c84f58f6a48649ea4b1937b0361ca', null);
+INSERT INTO `user_user` VALUES ('963f519fe47b48a08b8dff4ee1a639b1', '1133', '567', 'E10ADC3949BA59ABBE56E057F20F883E', null, null, null, null, '1535445917414', null, null, null, '2', 'cb67fa24992e4cdaa1ca0463b8a09082', null);
