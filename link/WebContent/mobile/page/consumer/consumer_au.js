@@ -108,6 +108,8 @@ var vm = avalon.define({
 			    success: function(res) {
 			    	if (res.status == 1) {
 			    		vm.consumer = res.data;
+	                }else if(res.status == -114){
+	                	window.location.href = "../checkpwd/check_pwd.html";
 	                }
 			    },
 			    error: function() {
@@ -202,6 +204,8 @@ var vm = avalon.define({
 		            	zTreeObj.checkNode(zTreeObj.getNodeByParam("id", vm.consumer.parentId, null), true, true);
 		            }
 		            
+                }else if(res.status == -114){
+                	window.location.href = "../checkpwd/check_pwd.html";
                 }else if(res.status == -110){
                 	window.location.href = "../login/login.html";
                 }else{

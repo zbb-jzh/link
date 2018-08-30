@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <title>index</title>
+		<link rel="stylesheet" href="../../frozen/css/frozen.css">
+        <link rel="stylesheet" href="../../demo.css">
+        <script src="../../frozen/lib/zepto.min.js"></script>
+        <script src="../../frozen/js/frozen.js"></script>
+        <script src="../../avalon/avalon.js"></script>
+        <script src="../common/footer.js"></script>
+    </head>
+	<body >
+	<div ms-controller="footercontent">
+		<footer class="ui-footer ui-footer-btn" >
+            <ul class="ui-tiled ui-border-t">
+                <li data-href="" class="ui-border-r" ms-click="setshow(1)"><div>个人信息</div></li>
+                <li data-href="" class="ui-border-r" ms-click="setshow1(1)"><div>我的业绩</div></li>
+                <li data-href="" class="ui-border-r" ms-click="setshow2(1)"><div>交易中心</div></li>
+            </ul>
+        </footer>
+        <div class="ui-actionsheet" ms-class='show:isOk'>
+    		<div class="ui-actionsheet-cnt am-actionsheet-down">
+        	<!-- <h4>同时会将我从对方的列表中删除</h4> -->
+        	<button ms-click="toLocation(1)">个人资料明细</button>
+        	<button ms-click="toLocation(2)">更改登陆密码</button>
+        	<button ms-click="toLocation(3)">更改二级密码</button>
+        	<div class="ui-actionsheet-split-line"></div>
+        	<button id="cancel" ms-click="setshow(0)">取消</button>
+    		</div>
+		</div>
+		<div class="ui-actionsheet" ms-class='show:isOk1'>
+    		<div class="ui-actionsheet-cnt am-actionsheet-down">
+        	<!-- <h4>同时会将我从对方的列表中删除</h4> -->
+        	<button ms-click="toLocation1(1)">推荐人管理</button>
+        	<button ms-click="toLocation1(2)">接点人管理</button>
+        	<button ms-click="toLocation1(3)">注册新会员</button>
+        	<div class="ui-actionsheet-split-line"></div>
+        	<button id="cancel" ms-click="setshow1(0)">取消</button>
+    		</div>
+		</div>
+		<div class="ui-actionsheet" ms-class='show:isOk2'>
+    		<div class="ui-actionsheet-cnt am-actionsheet-down">
+        	<!-- <h4>同时会将我从对方的列表中删除</h4> -->
+        	<button ms-click="toLocation2(1)">工资明细</button>
+        	<button ms-click="toLocation2(2)">奖金币提现</button>
+        	<button ms-click="toLocation2(3)">提现记录</button>
+        	<div class="ui-actionsheet-split-line"></div>
+        	<button id="cancel" ms-click="setshow2(0)">取消</button>
+    		</div>
+		</div>
+	</div>
+		
+	</body>
+</html>
