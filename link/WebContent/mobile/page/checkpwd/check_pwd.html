@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <title>确认二次密码</title>
+		<link rel="stylesheet" href="../../frozen/css/frozen.css">
+        <link rel="stylesheet" href="../../demo.css">
+        <script src="../../frozen/lib/zepto.min.js"></script>
+        <script src="../../frozen/js/frozen.js"></script>
+        <!-- <script src="../../jQuery/jQuery-2.2.0.min.js"></script> -->
+        <script src="../../avalon/avalon.js"></script>
+        <script src="check_pwd.js"></script>
+    </head>
+	<body ms-controller="checkpwd">
+	
+		<div class="ui-form ui-border-t">
+    		<!-- <form > -->
+        		<!-- <div class="ui-form-item ui-form-item-show ui-border-b">
+            	<label>
+               		 用户名
+            </label>
+            <input type="text" style="line-height: 44px;" placeholder="请输入用户名" ms-duplex="name">
+            	<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            	</a>
+        	</div> -->
+        	<div class="ui-form-item ui-border-b" style="margin-top: 50px;">
+            	<label>
+                		请输入二级密码
+            	</label>
+            	<input type="password" style="line-height: 44px;" placeholder="请输入二级密码" ms-duplex="password">
+            	<a href="#" class="ui-icon-close" ms-click="removeInput(2)">
+            	</a>
+        	</div>
+        	<!-- <div class="ui-form-item ui-form-item-link ui-border-b">
+            	<label>
+                	标题
+            	</label>
+        	</div> -->
+        	<div class="ui-btn-wrap" ms-click="login()">
+            	<button class="ui-btn-lg ui-btn-primary">
+               	 确认
+            	</button>
+        	</div>
+    <!-- </form> -->
+</div>
+	</body>
+	
+</html>

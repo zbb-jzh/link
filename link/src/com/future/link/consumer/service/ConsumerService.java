@@ -49,6 +49,7 @@ public class ConsumerService {
 		user.setConsumerId(consumer.getId());
 		user.setName(consumer.getUserName());
 		user.setPassword(MD5Util.generatePassword(consumer.getUserPwd()));
+		user.setTwoPassword(MD5Util.generatePassword(consumer.getTwoPassword()));
 		user.setPhone(consumer.getPhone());
 		user.setType(2);
 		user.setCreateTime(ToolDateTime.getDateByTime());

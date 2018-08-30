@@ -63,6 +63,8 @@ var vm = avalon.define({
 		            
                 }else if(res.status == -110){
                 	window.location.href = "../login/login.html";
+                }else if(res.status == -114){
+                	window.location.href = "../checkpwd/check_pwd.html";
                 }else{
                 	alert(res.data);
                 }

@@ -121,4 +121,12 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		return get("consumerId");
 	}
 
+	public void setTwoPassword(java.lang.String twoPassword) {
+		set("twoPassword", twoPassword);
+	}
+
+	public java.lang.String getTwoPassword() {
+		return get("twoPassword");
+	}
+
 }

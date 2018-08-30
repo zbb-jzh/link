@@ -177,4 +177,12 @@ public abstract class BaseConsumer<M extends BaseConsumer<M>> extends Model<M> i
 		return get("referrerId");
 	}
 
+	public void setTwoPassword(java.lang.String twoPassword) {
+		set("twoPassword", twoPassword);
+	}
+
+	public java.lang.String getTwoPassword() {
+		return get("twoPassword");
+	}
+
 }

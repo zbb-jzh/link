@@ -92,7 +92,7 @@ function zTreeBeforeCheck(treeId, treeNode){
 var vm = avalon.define({
 	$id:'consumerau',
 	consumerId:getUrlData('id'),
-	consumer:{id:'',name:'', type:'1',area:'1', description:'',contactPerson:'',phone:'',contact:'',address:'',referrerId:'',parentId:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',zipCode:'',userName:'',userPwd:''},
+	consumer:{id:'',name:'', type:'1',area:'1', description:'',contactPerson:'',phone:'',contact:'',address:'',referrerId:'',parentId:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',zipCode:'',userName:'',userPwd:'',twoPassword:''},
 	submited:false,
 	isUpdate:false,
 	getConsumer:function()

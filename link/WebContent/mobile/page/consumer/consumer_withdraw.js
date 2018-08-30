@@ -23,6 +23,8 @@ var vm = avalon.define({
 			    		vm.consumer = res.data;
 	                }else if(res.status == -110){
 	                	window.location.href = "../login/login.html";
+	                }else if(res.status == -114){
+	                	window.location.href = "../checkpwd/check_pwd.html";
 	                }
 			    },
 			    error: function() {

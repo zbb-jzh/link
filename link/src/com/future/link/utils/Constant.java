@@ -28,6 +28,11 @@ public class Constant {
 	public static final String SESSION_USER = "user";
 	
 	/**
+	 * 校验二级密码标识
+	 */
+	public static final String CHECKPWD_FLAG = "checkpwdflag";
+	
+	/**
 	 * 成功
 	 */
 	public static final int SUCCESS = 100;
@@ -121,6 +126,11 @@ public class Constant {
 	 * 每个区域只能一个人
 	 */
 	public static final int AREA_IS_ONE = -113;
+	
+	/**
+	 * 校验二级密码错误
+	 */
+	public static final int CHECK_TWO_PWD_ERR = -114;
 	
 	
 	/**

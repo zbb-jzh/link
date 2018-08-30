@@ -1,6 +1,7 @@
 package com.future.link.consumer.controller;
 
 import com.future.link.base.interceptor.AuthorityInterceptor;
+import com.future.link.base.interceptor.CheckTwoPwdInterceptor;
 import com.future.link.common.Result;
 import com.future.link.consumer.model.Consumer;
 import com.future.link.consumer.model.Withdraw;
@@ -83,7 +84,7 @@ public class ConsumerController extends Controller{
 	/**
 	 * 获取，树形结构 
 	 */
-	@Before(AuthorityInterceptor.class)
+	@Before({AuthorityInterceptor.class, CheckTwoPwdInterceptor.class})
 	public void doTree()
 	{
 		
@@ -98,7 +99,7 @@ public class ConsumerController extends Controller{
 	/**
 	 * 根据登录用户查询客户详细资料
 	 */
-	@Before(AuthorityInterceptor.class)
+	@Before({AuthorityInterceptor.class, CheckTwoPwdInterceptor.class})
 	public void doGetByUser()
 	{
 		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
@@ -109,7 +110,7 @@ public class ConsumerController extends Controller{
 	/**
 	 * 获取用户提现记录
 	 */
-	@Before(AuthorityInterceptor.class)
+	@Before({AuthorityInterceptor.class, CheckTwoPwdInterceptor.class})
 	public void doSearchWithdraw()
 	{
 		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
@@ -120,7 +121,7 @@ public class ConsumerController extends Controller{
 	/**
 	 * 获取用户推荐的客户
 	 */
-	@Before(AuthorityInterceptor.class)
+	@Before({AuthorityInterceptor.class, CheckTwoPwdInterceptor.class})
 	public void doSearchReferrers()
 	{
 		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);

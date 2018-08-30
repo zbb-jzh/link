@@ -1,20 +1,21 @@
 Table: user_user
-------------+-------------+------+-----+---------+---------
- Field      | Type        | Null | Key | Default | Remarks 
-------------+-------------+------+-----+---------+---------
- id         | VARCHAR(35) | NO   | PRI |         |         
- name       | VARCHAR(50) | NO   |     |         | 用户名     
- phone      | VARCHAR(20) | YES  |     |         | 联系电话    
- password   | VARCHAR(50) | NO   |     |         | 密码      
- department | VARCHAR(50) | YES  |     |         | 部门      
- sex        | INT(10)     | YES  |     |         |         
- email      | VARCHAR(50) | YES  |     |         |         
- address    | VARCHAR(80) | YES  |     |         |         
- createTime | BIGINT(19)  | YES  |     |         |         
- status     | INT(10)     | YES  |     |         |         
- salary     | INT(10)     | YES  |     |         | 工资      
- post       | VARCHAR(50) | YES  |     |         | 岗位      
- type       | INT(10)     | YES  |     |         | 1代表管理员，2代表会员
- consumerId | VARCHAR(50) | YES  |     |         | 会员id    
-------------+-------------+------+-----+---------+---------
+-------------+-------------+------+-----+---------+---------
+ Field       | Type        | Null | Key | Default | Remarks 
+-------------+-------------+------+-----+---------+---------
+ id          | VARCHAR(35) | NO   | PRI |         |         
+ name        | VARCHAR(50) | NO   |     |         | 用户名     
+ phone       | VARCHAR(20) | YES  |     |         | 联系电话    
+ password    | VARCHAR(50) | NO   |     |         | 密码      
+ department  | VARCHAR(50) | YES  |     |         | 部门      
+ sex         | INT(10)     | YES  |     |         |         
+ email       | VARCHAR(50) | YES  |     |         |         
+ address     | VARCHAR(80) | YES  |     |         |         
+ createTime  | BIGINT(19)  | YES  |     |         |         
+ status      | INT(10)     | YES  |     |         |         
+ salary      | INT(10)     | YES  |     |         | 工资      
+ post        | VARCHAR(50) | YES  |     |         | 岗位      
+ type        | INT(10)     | YES  |     |         | 1代表管理员，2代表会员
+ consumerId  | VARCHAR(50) | YES  |     |         | 会员id    
+ twoPassword | VARCHAR(50) | YES  |     |         | 二级密码    
+-------------+-------------+------+-----+---------+---------
 

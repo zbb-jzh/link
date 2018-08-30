@@ -165,6 +165,22 @@ public class UserService{
     }
     
     /**
+     * 用户登录
+     * @param name
+     * @param password
+     * @return
+     */
+    public Result checkTWoPwd(User user, String password)
+    {
+    	if(!MD5Util.validatePassword(user.getTwoPassword(), password))
+    	{
+    		return new Result(Constant.PWD_IS_ERROR, "密码错误");
+    	}
+    	
+    	return  new Result(Constant.SUCCESS, user);
+    }
+    
+    /**
      * 校验密码
      * @param name
      * @param password

@@ -136,6 +136,24 @@ public class UserController extends Controller{
 	}
 	
 	/**
+	 * 校验二级密码
+	 */
+	@Before(AuthorityInterceptor.class)
+	public void doCheckTWoPwd()
+	{
+		String password = this.getPara("password");
+		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
+		Result result = UserService.service.checkTWoPwd(user, password);
+		
+		if(result.getStatus() != Constant.SUCCESS){
+			renderJson(result);
+			return;
+    	}
+		setSessionAttr(Constant.CHECKPWD_FLAG, Constant.SUCCESS);
+		renderJson(result);
+	}
+	
+	/**
 	 * 查询用户角色
 	 */
 	@Before(AuthorityInterceptor.class)
