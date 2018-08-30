@@ -286,4 +286,20 @@ public class UserService{
     	return new Result(Constant.SUCCESS);
     }
     
+    /**
+     * 修改二级密码
+     * @param newPwd
+     * @param oldPwd
+     * @return
+     */
+    public Result modifyTwoPwd(User user, String newPwd, String oldPwd){
+    	
+    	if(!MD5Util.validatePassword(user.getTwoPassword(), oldPwd)){
+    		return Result.flomErrorData(Constant.OLDPWD_IS_ERROR);
+    	}
+    	Db.update("update user_user set twoPassword = ? where id = ?", MD5Util.generatePassword(newPwd), user.getId());
+    	return new Result(Constant.SUCCESS);
+    }
+    
+    
 }

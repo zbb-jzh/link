@@ -210,4 +210,17 @@ public class UserController extends Controller{
 		}
 		renderJson(UserService.service.modifyPwd(user, newPwd, oldPwd));
 	}
+	
+	/**
+	 * 修改二级密码
+	 */
+	@Before(AuthorityInterceptor.class)
+	public void modifyTwoPwd(){
+		
+		String oldPwd = this.getPara("oldPwd");
+		String newPwd = this.getPara("newPwd");
+		User user = getSessionAttr(Constant.SESSION_USER);
+		
+		renderJson(UserService.service.modifyPwd(user, newPwd, oldPwd));
+	}
 }
