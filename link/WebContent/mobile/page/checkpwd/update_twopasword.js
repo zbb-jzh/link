@@ -28,7 +28,9 @@ var vm = avalon.define({
 	    	if(res.status == 100){
 	    		alert("修改成功");
 	    		
-	    	}else if(res.status == -112){
+	    	}else if(res.status == -110){
+            	window.location.href = "../login/login.html";
+            }else if(res.status == -112){
             	alert("原始密码输入错误");
             }else{
 	    		alert(res.data);
@@ -48,3 +50,4 @@ var vm = avalon.define({
 	}
 	
 })
+avalon.scan();
