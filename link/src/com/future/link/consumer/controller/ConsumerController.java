@@ -117,6 +117,17 @@ public class ConsumerController extends Controller{
 		renderJson(WithdrawService.service.searchWithdraws(user.getConsumerId()));
 	}
 	
+	/**
+	 * 获取用户推荐的客户
+	 */
+	@Before(AuthorityInterceptor.class)
+	public void doSearchReferrers()
+	{
+		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
+		
+		renderJson(ConsumerService.service.searchReferrers(user.getConsumerId()));
+	}
+	
 	@Before(AuthorityInterceptor.class)
 	public void doPage()
 	{

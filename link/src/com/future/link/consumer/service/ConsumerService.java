@@ -156,6 +156,17 @@ public class ConsumerService {
 	}
 	
 	/**
+	 * 获取客户推荐的客户
+	 * @param consumerId
+	 * @return
+	 */
+	public Result searchReferrers(String consumerId) {
+		
+		List<Consumer> list = Consumer.dao.find("select * from consumer_consumer where status = ? and referrerId = ? order by createTime desc", Constant.UN_DELETE, consumerId);
+		return new Result(Result.SUCCESS_STATUS, list);
+	}
+	
+	/**
 	 * 获取，树形结构
 	 * @return
 	 */

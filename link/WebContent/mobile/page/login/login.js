@@ -21,7 +21,7 @@ var vm = avalon.define({
 	    type: "post",   //请求方式
 	    success: function(res) {
 	    	if(res.status == 100){
-	    		 localStorage.setItem("userType", res.data.type);
+	    		 localStorage.setItem("user", JSON.stringify(res.data));
 	    		window.location.href = "../consumer/person_info.html";
 	    	}else{
 	    		alert(res.data);
