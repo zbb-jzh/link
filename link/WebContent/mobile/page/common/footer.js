@@ -29,7 +29,24 @@ var vmm = avalon.define({
 			window.location.href = "../checkpwd/update_twopassword.html";
 		}
 		if(type == 4){
-			window.location.href = "../consumer/person_info.html";
+			$.ajax({
+			    url: "../../../user/loginout",    //请求的url地址
+			    dataType: "json",   //返回格式为json
+			    data: {},    //参数值
+			    type: "post",   //请求方式
+			    success: function(res) {
+			    	if(res.status == 100){
+			    		 window.location.href = "../login/login.html";
+			    	}else{
+			    		alert(res.data);
+			    	}
+			        console.log('sucess');
+			    },
+			    error: function() {
+			    	console.log('error');
+			    }
+			});
+			
 		}
 	},
 	setshow1:function(type){

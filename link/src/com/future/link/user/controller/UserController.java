@@ -136,6 +136,16 @@ public class UserController extends Controller{
 	}
 	
 	/**
+	 * 注销
+	 */
+	public void loginout()
+	{
+		removeSessionAttr(Constant.SESSION_USER);
+		removeSessionAttr(Constant.CHECKPWD_FLAG);
+		renderJson(new Result(Constant.SUCCESS));
+	}
+	
+	/**
 	 * 校验二级密码
 	 */
 	@Before(AuthorityInterceptor.class)

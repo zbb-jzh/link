@@ -12,7 +12,7 @@
         <script src="../common/footer.js"></script>
     </head>
 	<body >
-	<div ms-controller="footercontent">
+	<div ms-controller="footercontent" style="height: 56px;">
 		<footer class="ui-footer ui-footer-btn" >
             <ul class="ui-tiled ui-border-t">
                 <li data-href="" class="ui-border-r" ms-click="setshow(1)"><div>个人信息</div></li>
@@ -26,6 +26,7 @@
         	<button ms-click="toLocation(1)">个人资料明细</button>
         	<button ms-click="toLocation(2)">更改登陆密码</button>
         	<button ms-click="toLocation(3)">更改二级密码</button>
+        	<button ms-click="toLocation(4)">安全退出</button>
         	<div class="ui-actionsheet-split-line"></div>
         	<button id="cancel" ms-click="setshow(0)">取消</button>
     		</div>
