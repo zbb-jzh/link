@@ -13,7 +13,7 @@ var vm = avalon.define({
 	{
 		
 			$.ajax({
-			    url: "../../../consumer/doGetByUser",    //请求的url地址
+			    url: "../../../consumer/doGetDetailByUser",    //请求的url地址
 			    dataType: "json",   //返回格式为json
 			    data: {id:vm.consumerId},    //参数值
 			    type: "post",   //请求方式

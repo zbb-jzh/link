@@ -97,10 +97,21 @@ public class ConsumerController extends Controller{
 	}
 	
 	/**
-	 * 根据登录用户查询客户详细资料
+	 * 根据登录用户查询客户详细资料 
 	 */
 	@Before({AuthorityInterceptor.class, CheckTwoPwdInterceptor.class})
 	public void doGetByUser()
+	{
+		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
+		
+		renderJson(ConsumerService.service.getById(user.getConsumerId()));
+	}
+	
+	/**
+	 * 根据登录用户查询客户详细资料 
+	 */
+	@Before(AuthorityInterceptor.class)
+	public void doGetDetailByUser()
 	{
 		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
 		
