@@ -21,7 +21,7 @@
                		 用户名
             	</label>
             	<input type="text" style="line-height: 44px;" placeholder="请输入用户名" ms-duplex="name">
-            	<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            	<a href="#" class="ui-icon-close" ms-click="removeInput(1)" ms-visible="name != ''">
             	</a>
         	</div>
         	<div class="ui-form-item ui-form-item-show ui-border-b" style="margin-top: 20px;">
@@ -29,7 +29,7 @@
                 		密码
             	</label>
             	<input type="password" style="line-height: 44px;" placeholder="请输入密码" ms-duplex="password">
-            	<a href="#" class="ui-icon-close" ms-click="removeInput(2)">
+            	<a href="#" class="ui-icon-close" ms-click="removeInput(2)" ms-visible="password != ''">
             	</a>
         	</div>
         	<!-- <div class="ui-form-item ui-form-item-link ui-border-b">

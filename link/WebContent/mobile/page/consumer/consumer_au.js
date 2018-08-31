@@ -183,6 +183,14 @@ var vm = avalon.define({
 			});
 		}
 	},
+	actionIcon:function(nodes){
+		//node[i].icon="../../common/images/zTreeStandard.png";
+		for(var i=0; i<nodes.length; i++){
+			
+			nodes[i].icon="../../common/images/zTreeStandard.png";
+			vm.actionIcon(nodes[i].nodes);
+		}
+	},
 	getConsumerTreeList: function () {
     	$.ajax({
 		    url: "/link/consumer/doTree",    //请求的url地址
@@ -192,6 +200,14 @@ var vm = avalon.define({
 		    success: function(res) {
 		    	if (res.status == 100) {
 		    		//vm.shopCategoryList = res.data;
+		    		res.data.icon="../../common/images/zTreeStandard.png";
+		    		vm.actionIcon(res.data.nodes);
+		    		/*for(var i=0; i<res.data.nodes.length; i++){
+		    			
+		    			//res.data.nodes[i].icon="../../common/images/zTreeStandard.png";
+		    			vm.actionIcon(res.data.nodes[i]);
+		    		
+		    		}*/
 		    		console.log(res.data)
 		            zTreeObj = $.fn.zTree.init($("#goodsCateory"), setting, res.data);
 		    		var nodes = zTreeObj.getNodes();
