@@ -44,8 +44,14 @@ var vm = avalon.define({
 	},
 	removeInput:function(type){
 		
+		if(type == 1){
+			vm.oldpassword = '';
+		}
 		if(type == 2){
 			vm.password = '';
+		}
+		if(type == 3){
+			vm.cpassword = '';
 		}
 	}
 	

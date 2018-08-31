@@ -26,7 +26,7 @@
                			 姓名
             		</label>
             		<input type="text" style="line-height: 44px;" placeholder="请输入用户名" ms-attr-readonly="isUpdate" ms-duplex="consumer.name">
-            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)" ms-if="!isUpdate">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput('name')" ms-if="!isUpdate" ms-visible="consumer.name != ''">
             			</a>
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b">
@@ -34,7 +34,7 @@
                			 银行持卡人姓名
             		</label>
             		<input type="text" style="line-height: 44px;padding-left: 120px;" placeholder="银行持卡人姓名" ms-duplex="consumer.bankAccountName">
-            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput('bankAccountName')" ms-visible="consumer.bankAccountName != ''">
             			</a>
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b">
@@ -42,7 +42,7 @@
                			 开户银行
             		</label>
             		<input type="text" style="line-height: 44px;" placeholder="开户银行" ms-duplex="consumer.bankName">
-            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput('bankName')" ms-visible="consumer.bankName != ''">
             			</a>
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b">
@@ -50,7 +50,7 @@
                			 开户银行所在地
             		</label>
             		<input type="text" style="line-height: 44px;padding-left: 120px;" placeholder="开户银行所在地" ms-duplex="consumer.bankAddress">
-            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput('bankAddress')" ms-visible="consumer.bankAddress != ''">
             			</a>
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b">
@@ -58,7 +58,7 @@
                			 卡号
             		</label>
             		<input type="text" style="line-height: 44px;" placeholder="卡号" ms-duplex="consumer.bankCard">
-            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput('bankCard')" ms-visible="consumer.bankCard != ''">
             			</a>
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b">
@@ -66,7 +66,7 @@
                			 联系地址
             		</label>
             		<input type="text" style="line-height: 44px;" placeholder=" 联系地址" ms-duplex="consumer.address">
-            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput('address')" ms-visible="consumer.address != ''">
             			</a>
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b">
@@ -74,7 +74,7 @@
                			 邮编
             		</label>
             		<input type="text" style="line-height: 44px;" placeholder="邮编" ms-duplex="consumer.zipCode">
-            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput('zipCode')" ms-visible="consumer.zipCode != ''">
             			</a>
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b">
@@ -82,7 +82,7 @@
                			 手机号码
             		</label>
             		<input type="text" style="line-height: 44px;" placeholder="手机号码" ms-duplex="consumer.phone">
-            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput('phone')" ms-visible="consumer.phone != ''">
             			</a>
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b">
@@ -111,7 +111,7 @@
                			 登录用户名
             		</label>
             		<input type="text" style="line-height: 44px;" placeholder="登录用户名" ms-duplex="consumer.userName">
-            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput('userName')" ms-visible="consumer.userName != ''">
             			</a>
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b" ms-if="!isUpdate">
@@ -119,7 +119,7 @@
                			 登录密码
             		</label>
             		<input type="password" style="line-height: 44px;" placeholder="登录密码" ms-duplex="consumer.userPwd">
-            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput('userPwd')" ms-visible="consumer.userPwd != ''">
             			</a>
         		</div>
         		<div class="ui-form-item ui-form-item-show ui-border-b" ms-if="!isUpdate">
@@ -127,7 +127,7 @@
                			 二级密码
             		</label>
             		<input type="password" style="line-height: 44px;" placeholder="登录密码" ms-duplex="consumer.twoPassword">
-            			<a href="#" class="ui-icon-close" ms-click="removeInput(1)">
+            			<a href="#" class="ui-icon-close" ms-click="removeInput('twoPassword')" ms-visible="consumer.twoPassword != ''">
             			</a>
         		</div>
         	<!-- <div class="ui-form-item ui-form-item-link ui-border-b">

@@ -4,8 +4,9 @@
 
 var vm = avalon.define({
 	$id:'consumerwithdraw',
-	consumerId:getUrlData('id'),
-	consumer:{id:'',name:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',userName:'',prizeCoin:'0',withdrawCount:''},
+	/*consumerId:getUrlData('id'),*/
+	consumer:{id:'',name:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',userName:'',prizeCoin:'0'},
+	withdrawCount:'',
 	consumerwithdraw:{consumerId:'',consumerName:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',userName:'',prizeCoin:'0',withdrawCount:''},
 	submited:false,
 	isUpdate:false,
@@ -42,7 +43,7 @@ var vm = avalon.define({
 		vm.consumerwithdraw.bankCard = vm.consumer.bankCard;
 		vm.consumerwithdraw.userName = vm.consumer.userName;
 		vm.consumerwithdraw.prizeCoin = vm.consumer.prizeCoin;
-		vm.consumerwithdraw.withdrawCount = vm.consumer.withdrawCount;
+		vm.consumerwithdraw.withdrawCount = vm.withdrawCount;
 			$.ajax({
 			    url: "../../../consumer/doAddWithDraw",    //请求的url地址
 			    dataType: "json",   //返回格式为json
@@ -62,7 +63,7 @@ var vm = avalon.define({
 			});
 	},
 	removeInput:function(){
-		vm.consumer.withdrawCount = '';
+		vm.withdrawCount = '';
 	},
 	goback:function()
 	{

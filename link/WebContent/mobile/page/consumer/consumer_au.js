@@ -220,6 +220,9 @@ var vm = avalon.define({
     zTreeBeforeCheck:function(treeId, treeNode){
     	console.log(treeNode);
     },
+    removeInput:function(name){
+    	vm.consumer[name] = '';
+    },
 	goback:function()
 	{
 		window.location.href = '#/consumer/list';
