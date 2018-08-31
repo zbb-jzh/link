@@ -6,6 +6,7 @@ import com.future.link.common.Result;
 import com.future.link.consumer.model.Consumer;
 import com.future.link.consumer.model.Withdraw;
 import com.future.link.consumer.service.ConsumerService;
+import com.future.link.consumer.service.SalaryService;
 import com.future.link.consumer.service.WithdrawService;
 import com.future.link.user.model.User;
 import com.future.link.utils.Constant;
@@ -94,6 +95,19 @@ public class ConsumerController extends Controller{
 		}else {
 			renderJson(ConsumerService.service.tree());
 		}
+	}
+	
+	/**
+	 * 获取，树形结构 
+	 */
+	@Before({AuthorityInterceptor.class, CheckTwoPwdInterceptor.class})
+	public void searchSalarys()
+	{
+		
+		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
+		
+		renderJson(SalaryService.service.searchSalarys(user.getConsumerId()));
+		
 	}
 	
 	/**

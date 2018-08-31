@@ -1,9 +1,12 @@
 package com.future.link.consumer.service;
 
 import java.util.Date;
+import java.util.List;
 
+import com.future.link.common.Result;
 import com.future.link.consumer.model.Salary;
 import com.future.link.utils.CommonUtil;
+import com.future.link.utils.Constant;
 import com.future.link.utils.ToolDateTime;
 import com.jfinal.aop.Enhancer;
 
@@ -58,6 +61,17 @@ public class SalaryService {
 			return 0.0;
 		}
 		return salary.getRealWage();
+	}
+	
+	/**
+	 * 查询客户的工资明细
+	 * @param consumerId
+	 * @return
+	 */
+	public Result searchSalarys(String consumerId) {
+		
+		List<Salary> list = Salary.dao.find("select * from consumer_salary WHERE consumerId = ?", consumerId);
+		return new Result(Constant.SUCCESS, list);
 	}
 
 }

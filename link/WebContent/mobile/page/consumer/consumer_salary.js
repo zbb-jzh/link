@@ -3,11 +3,11 @@
  */
 
 var vm = avalon.define({
-	$id:'consumerwithdraw',
-	/*consumerId:getUrlData('id'),*/
-	consumer:{id:'',name:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',userName:'',prizeCoin:'0'},
-	withdrawCount:'',
+	$id:'consumersalary',
+	consumerId:getUrlData('id'),
+	consumer:{id:'',name:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',userName:'',prizeCoin:'0',withdrawCount:''},
 	consumerwithdraw:{consumerId:'',consumerName:'',bankAccountName:'',bankName:'',bankAddress:'',bankCard:'',userName:'',prizeCoin:'0',withdrawCount:''},
+	withdrawList:[],
 	submited:false,
 	isUpdate:false,
 	getConsumer:function()
@@ -15,13 +15,13 @@ var vm = avalon.define({
 		
 			vm.isUpdate = true;
 			$.ajax({
-			    url: "../../../consumer/doGetByUser",    //请求的url地址
+			    url: "../../../consumer/searchSalarys",    //请求的url地址
 			    dataType: "json",   //返回格式为json
 			    data: {},    //参数值
 			    type: "post",   //请求方式
 			    success: function(res) {
-			    	if (res.status == 1) {
-			    		vm.consumer = res.data;
+			    	if (res.status == 100) {
+			    		vm.withdrawList = res.data;
 	                }else if(res.status == -110){
 	                	window.location.href = "../login/login.html";
 	                }else if(res.status == -114){
@@ -43,7 +43,7 @@ var vm = avalon.define({
 		vm.consumerwithdraw.bankCard = vm.consumer.bankCard;
 		vm.consumerwithdraw.userName = vm.consumer.userName;
 		vm.consumerwithdraw.prizeCoin = vm.consumer.prizeCoin;
-		vm.consumerwithdraw.withdrawCount = vm.withdrawCount;
+		vm.consumerwithdraw.withdrawCount = vm.consumer.withdrawCount;
 			$.ajax({
 			    url: "../../../consumer/doAddWithDraw",    //请求的url地址
 			    dataType: "json",   //返回格式为json
@@ -52,7 +52,6 @@ var vm = avalon.define({
 			    success: function(res) {
 			    	if (res.status == 1) {
 			    		console.log('sucess');
-			    		vm.getConsumer();
 			    		//vm.goback();
 	                }else{
 	                	alert(res.data);
@@ -64,7 +63,7 @@ var vm = avalon.define({
 			});
 	},
 	removeInput:function(){
-		vm.withdrawCount = '';
+		vm.consumer.withdrawCount = '';
 	},
 	goback:function()
 	{
