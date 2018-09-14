@@ -84,14 +84,13 @@
                     </thead>
                     <tbody>
                     <tr role="row" ms-repeat-item="withdrawalList">
-                        <td class="t-alain-left goods-title"><span>{{item.name}}</span></td>
-                        <td class="">{{item.contactPerson}}</td>
-                        <td class="">{{item.phone}}</td>
-                        
-                        <td>{{item.createTime | date("yyyy-MM-dd HH:mm:ss")}}</td>
-                        <td class="">{{item.address}}</td>
-                        <td class="shelve" ms-if="item.type==1"><i>个人</i></td>
-                        <td class="off-shelf" ms-if="item.type==2"><i>企业</i></td>
+                        <td class="t-alain-left goods-title"><span>{{item.userName}}</span></td>
+                        <td class="">{{item.consumerName}}</td>
+                        <td class="">{{item.withdrawCount}}</td>
+                        <td class="">{{item.withdrawCount}}</td>
+                        <td>{{item.withdrawDate | date("yyyy-MM-dd HH:mm:ss")}}</td>
+                        <td class="shelve" ms-if="item.status==1"><i>已处理</i></td>
+                        <td class="off-shelf" ms-if="item.status==0"><i>未处理</i></td>
                         <td class="status">
                             <i class="" ms-click="toAU(item.id)">修改|</i>
                             <i class="" ms-click="onDelete(item.id)">删除</i>
