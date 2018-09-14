@@ -58,5 +58,6 @@ Table: consumer_withdraw
  withdrawDate    | DATETIME(19) | YES  |     |         | 提先日期    
  deduction       | DOUBLE(22)   | YES  |     | 0       | 扣车库     
  remark          | VARCHAR(100) | YES  |     |         | 备注      
+ status          | INT(10)      | YES  |     | 0       | 财务是否已经处理会员提现，1处理过了，0未处理
 -----------------+--------------+------+-----+---------+---------
 

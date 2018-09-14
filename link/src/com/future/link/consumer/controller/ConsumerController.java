@@ -155,6 +155,30 @@ public class ConsumerController extends Controller{
 	}
 	
 	@Before(AuthorityInterceptor.class)
+	public void doPageWithdraw()
+	{
+		int pageNumber = this.getParaToInt("pageNumber");
+        int pageSize = this.getParaToInt("pageSize");
+        if(pageNumber == 0 || pageSize == 0){
+            this.renderJson(new Result(-1001, "分数或每页数量为空"));
+            return;
+        }else{
+            String name = this.getPara("name");
+            String type = this.getPara("type");
+            
+            long startTime = 0;
+            long endTime = 0;
+            if(this.getParaToLong("startTime") != null){
+                startTime = this.getParaToLong("startTime");
+            }
+            if(this.getParaToLong("endTime") != null){
+                endTime = this.getParaToLong("endTime");
+            }
+            this.renderJson(new Result(Result.SUCCESS_STATUS, WithdrawService.service.page(pageNumber, pageSize, name, type, startTime, endTime)));
+        }
+	}
+	
+	@Before(AuthorityInterceptor.class)
 	public void doPage()
 	{
 		int pageNumber = this.getParaToInt("pageNumber");

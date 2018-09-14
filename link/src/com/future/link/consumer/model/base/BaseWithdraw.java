@@ -113,4 +113,12 @@ public abstract class BaseWithdraw<M extends BaseWithdraw<M>> extends Model<M> i
 		return get("remark");
 	}
 
+	public void setStatus(java.lang.Integer status) {
+		set("status", status);
+	}
+
+	public java.lang.Integer getStatus() {
+		return get("status");
+	}
+
 }

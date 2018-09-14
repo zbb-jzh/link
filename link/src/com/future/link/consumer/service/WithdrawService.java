@@ -1,12 +1,16 @@
 package com.future.link.consumer.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.future.link.common.Result;
+import com.future.link.consumer.model.Consumer;
 import com.future.link.consumer.model.Withdraw;
 import com.future.link.utils.CommonUtil;
 import com.future.link.utils.ToolDateTime;
 import com.jfinal.aop.Enhancer;
+import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.Page;
 
 public class WithdrawService {
 	
@@ -48,5 +52,39 @@ public class WithdrawService {
 		List<Withdraw> list = Withdraw.dao.find("select * from consumer_withdraw WHERE consumerId = ?", consumerId);
 		return new Result(Result.SUCCESS_STATUS, list);
 	}
+	
+	/**
+     * 分页查询
+     * @return
+     */
+    public Page<Consumer> page(int pageNumber, int pageSize, String name,String status, long startTime, long endTime){
+
+        StringBuffer sql = new StringBuffer(" from consumer_withdraw where 1=1  ");
+        List<Object> params = new ArrayList<>();
+        params.add(Consumer.UN_DELETE);
+        
+        if(startTime > 0){
+        	sql.append(" and withdrawDate >= ?");
+            params.add(startTime);
+        }
+        if(endTime > 0){
+        	sql.append(" and withdrawDate <= ?");
+            params.add(endTime);
+        }
+        
+        if(StrKit.notBlank(name)){
+            sql.append(" and userName like ?");
+            params.add("%" + name + "%");
+        }
+        
+        if(StrKit.notBlank(status)){
+            sql.append(" status = ?");
+            params.add(status);
+        }
+        
+        sql.append(" order by withdrawDate desc");
+        Page<Consumer> page = Consumer.dao.paginate(pageNumber, pageSize, "select * ", sql.toString(), params.toArray());
+        return page;
+    }
 
 }
