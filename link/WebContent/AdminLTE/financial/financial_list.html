@@ -51,7 +51,7 @@
                 <button  type="button" class="btn-flat default" ms-click="search()">搜索</button>
                 <button  type="button" class="btn-flat white" ms-click="preset()">重置</button>
             </div>
-            <div class="btn-search" style="margin-right: 20px;margin-top:-5px;" ms-click="toAU('')"><i></i>添加</div>
+            <!-- <div class="btn-search" style="margin-right: 20px;margin-top:-5px;" ms-click="toAU('')"><i></i>添加</div> -->
         </div>
         <div class="col-md-12" >
             <div class="col-sm-12">
@@ -92,8 +92,8 @@
                         <td class="shelve" ms-if="item.status==1"><i>已处理</i></td>
                         <td class="off-shelf" ms-if="item.status==0"><i>未处理</i></td>
                         <td class="status">
-                            <i class="" ms-click="toAU(item.id)">修改|</i>
-                            <i class="" ms-click="onDelete(item.id)">删除</i>
+                            <!-- <i class="" ms-click="toAU(item.id)">修改|</i> -->
+                            <i class="" ms-click="onDelete(item.id)">处理</i>
                         </td>
                     </tr>
                     </tbody>
@@ -115,5 +115,5 @@
 <script type="text/javascript" src="common/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="common/plugins/bootstrap-paginator/bootstrap-paginator.js"></script>
 <script type="text/javascript" src="common/plugins/avalon/avalon.js"></script>
-<script type="text/javascript" src="consumer/js/consumer_list.js" > </script>
+<script type="text/javascript" src="financial/js/financial_list.js" > </script>
 </html>

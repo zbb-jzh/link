@@ -57,11 +57,10 @@ public class WithdrawService {
      * 分页查询
      * @return
      */
-    public Page<Consumer> page(int pageNumber, int pageSize, String name,String status, long startTime, long endTime){
+    public Page<Withdraw> page(int pageNumber, int pageSize, String name,String status, long startTime, long endTime){
 
         StringBuffer sql = new StringBuffer(" from consumer_withdraw where 1=1  ");
         List<Object> params = new ArrayList<>();
-        params.add(Consumer.UN_DELETE);
         
         if(startTime > 0){
         	sql.append(" and withdrawDate >= ?");
@@ -83,7 +82,7 @@ public class WithdrawService {
         }
         
         sql.append(" order by withdrawDate desc");
-        Page<Consumer> page = Consumer.dao.paginate(pageNumber, pageSize, "select * ", sql.toString(), params.toArray());
+        Page<Withdraw> page = Withdraw.dao.paginate(pageNumber, pageSize, "select * ", sql.toString(), params.toArray());
         return page;
     }
 
