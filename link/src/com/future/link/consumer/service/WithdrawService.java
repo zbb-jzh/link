@@ -50,6 +50,7 @@ public class WithdrawService {
 	 */
 	public Result paySalary(String id) {
 		Db.update("update consumer_withdraw set status = 1 WHERE id = ?", id);
+		
 		return new Result(Result.SUCCESS_STATUS);
 	}
 	
