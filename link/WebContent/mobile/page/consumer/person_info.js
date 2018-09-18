@@ -53,6 +53,9 @@ var vm = avalon.define({
 			    }
 			});
 	},
+	 removeInput:function(name){
+	    	vm.consumer[name] = '';
+	    },
 	goback:function()
 	{
 		window.location.href = '#/consumer/list';
