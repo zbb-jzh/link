@@ -10,6 +10,7 @@ import com.future.link.utils.CommonUtil;
 import com.future.link.utils.ToolDateTime;
 import com.jfinal.aop.Enhancer;
 import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 
 public class WithdrawService {
@@ -48,7 +49,7 @@ public class WithdrawService {
 	 * @return
 	 */
 	public Result paySalary(String id) {
-		Withdraw.dao.find("update consumer_withdraw set status = 1 WHERE id = ?", id);
+		Db.update("update consumer_withdraw set status = 1 WHERE id = ?", id);
 		return new Result(Result.SUCCESS_STATUS);
 	}
 	
