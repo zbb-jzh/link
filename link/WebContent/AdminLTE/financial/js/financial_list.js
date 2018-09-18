@@ -116,7 +116,7 @@ var vm = avalon.define({
 		    type: "post",   //请求方式
 		    success: function(res) {
 		    	if (res.status == 1) {
-		    		alert(支付成功);
+		    		alert('支付成功');
                 }
 		    },
 		    error: function() {
