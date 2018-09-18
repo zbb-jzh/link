@@ -12,6 +12,8 @@ var vm = avalon.define({
 	startDate:'',
 	endDate:'',
 	withdrawalList:[],
+	withdraw:{id:'',consumerName:'', withdrawCount:'',bankAccountName:'',bankCard:'',bankName:'',bankAddress:''},
+	showDetail:false,
 	
 	getWithdrawalList:function(pageNumber, pageSize)
 	{
@@ -91,6 +93,36 @@ var vm = avalon.define({
     },
      toAU : function (id) {
         window.location = '#/consumer/au?id=' + id;
+    },
+    toShowDetail:function(obj){
+    	vm.withdraw.id = obj.id;
+    	vm.withdraw.consumerName = obj.consumerName;
+    	vm.withdraw.withdrawCount = obj.withdrawCount;
+    	vm.withdraw.bankAccountName=obj.bankAccountName;
+    	vm.withdraw.bankCard = obj.bankCard;
+    	vm.withdraw.bankName = obj.bankName;
+    	vm.withdraw.bankAddress = obj.bankAddress;
+    	vm.showDetail = true;
+    },
+    hideShow:function(){
+    	vm.showDetail = false;
+    },
+    paysalary:function(id)
+    {
+    	$.ajax({
+		    url: "../consumer/paySalary",    //请求的url地址
+		    dataType: "json",   //返回格式为json
+		    data: {id:id},    //参数值
+		    type: "post",   //请求方式
+		    success: function(res) {
+		    	if (res.status == 1) {
+		    		alert(支付成功);
+                }
+		    },
+		    error: function() {
+		    	console.log('error');
+		    }
+		});
     },
     onDelete:function(id)
     {

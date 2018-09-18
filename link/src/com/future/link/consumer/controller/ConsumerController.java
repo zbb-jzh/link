@@ -44,6 +44,13 @@ public class ConsumerController extends Controller{
 	}
 	
 	@Before(AuthorityInterceptor.class)
+	public void paySalary()
+	{
+		String id = this.getPara("id");
+		renderJson(WithdrawService.service.paySalary(id));
+	}
+	
+	@Before(AuthorityInterceptor.class)
 	public void doUpdate()
 	{
 		Consumer consumer = this.getModel(Consumer.class);

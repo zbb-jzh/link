@@ -44,6 +44,15 @@ public class WithdrawService {
 	}
 	
 	/**
+	 * 付工资
+	 * @return
+	 */
+	public Result paySalary(String id) {
+		Withdraw.dao.find("update consumer_withdraw set status = 1 WHERE id = ?", id);
+		return new Result(Result.SUCCESS_STATUS);
+	}
+	
+	/**
 	 * 获取客户提现记录
 	 * @param 
 	 */
@@ -77,7 +86,7 @@ public class WithdrawService {
         }
         
         if(StrKit.notBlank(status)){
-            sql.append(" status = ?");
+            sql.append(" and status = ?");
             params.add(status);
         }
         
