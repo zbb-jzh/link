@@ -75,11 +75,11 @@ public class WithdrawService {
         
         if(startTime > 0){
         	sql.append(" and withdrawDate >= ?");
-            params.add(startTime);
+            params.add(ToolDateTime.parseToDate(startTime+""));
         }
         if(endTime > 0){
         	sql.append(" and withdrawDate <= ?");
-            params.add(endTime);
+            params.add(ToolDateTime.parseToDate(endTime+""));
         }
         
         if(StrKit.notBlank(name)){

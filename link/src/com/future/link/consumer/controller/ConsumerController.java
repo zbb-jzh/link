@@ -178,6 +178,7 @@ public class ConsumerController extends Controller{
             if(this.getParaToLong("startTime") != null){
                 startTime = this.getParaToLong("startTime");
             }
+            
             if(this.getParaToLong("endTime") != null){
                 endTime = this.getParaToLong("endTime");
             }

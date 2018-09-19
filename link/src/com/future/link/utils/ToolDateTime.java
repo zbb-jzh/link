@@ -528,4 +528,19 @@ public abstract class ToolDateTime {
 		return listArray;
 	}
 	
+	/**
+	 * 时间戳转换成时间
+	 * @param s
+	 * @return
+	 */
+	public static String parseToDate(String s) {
+		
+		String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long lt = new Long(s);
+        Date date = new Date(lt);
+        res = simpleDateFormat.format(date);
+        return res;
+		
+	}
 }
