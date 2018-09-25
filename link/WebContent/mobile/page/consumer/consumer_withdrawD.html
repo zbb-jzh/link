@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <title>奖金币明细</title>
+		<link rel="stylesheet" href="../../frozen/css/frozen.css">
+        <link rel="stylesheet" href="../../demo.css">
+        <link rel="stylesheet" href="../../common/jQuery-ztree/demo.css">
+        <link rel="stylesheet" href="../../common/jQuery-ztree/zTreeStyle.css">
+        <script src="../../frozen/lib/zepto.min.js"></script>
+        <script src="../../frozen/js/frozen.js"></script>
+        <script src="../../jQuery/jQuery-2.2.0.min.js"></script>
+        <script src="../../avalon/avalon.js"></script>
+        <script type="text/javascript" src="../../common/jQuery-ztree/jquery.ztree.core.min.js" > </script>
+		<script type="text/javascript" src="../../common/jQuery-ztree/jquery.ztree.all.min.js" > </script>
+		<script type="text/javascript" src="../../common/tools.js" > </script>
+        <script src="consumer_withdrawD.js"></script>
+    </head>
+	<body ms-controller="consumerwithdrawdetail">
+	
+		<div class="ui-form ui-border-t">
+    		<form>
+    		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label>
+               			 会员编号
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder="" ms-attr-readonly="true" ms-duplex="consumer.userName">
+            			
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label>
+               			 会员姓名
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder="" ms-attr-readonly="true" ms-duplex="consumer.name">
+            			
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label style="width:110px;">
+               			 现有奖金币
+            		</label>
+            		<input type="text" style="line-height: 44px;" placeholder="" ms-attr-readonly="true" ms-duplex="withdrawCount">
+         			
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label style="width:120px;">
+               			 已领取奖金币
+            		</label>
+            		<input type="text" style="line-height: 44px;padding-left: 120px;" placeholder="" ms-attr-readonly="true" ms-duplex="consumer.withdraws">
+         			
+        		</div>
+        		<div class="ui-form-item ui-form-item-show ui-border-b">
+            		<label style="width:130px;">
+               			 历史奖金币总和
+            		</label>
+            		<input type="text" style="line-height: 44px;padding-left: 130px;" placeholder="" ms-attr-readonly="true" ms-duplex="consumer.prizeCoin">
+         			
+        		</div>
+    </form>
+</div>
+<div  ms-include-src="'../common/footer.html'"></div> 
+	</body>
+</html>
