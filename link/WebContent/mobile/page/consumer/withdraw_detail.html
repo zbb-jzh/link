@@ -35,6 +35,8 @@
             	<p>银行所在地：{{item.bankAddress}}</p>
             	<p>卡号：{{item.bankCard}}</p>
             	<p>领取日期：{{item.withdrawDate}}</p>
+            	<p ms-visible="item.status == 0">状态：<span style="color:blue;">待处理</span></p>
+            	<p ms-visible="item.status == 1">状态：<span style="color:red;">已处理</span></p>
             	<p>备注：{{item.remark}}</p>
         	</div>
     	</li>
