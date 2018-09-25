@@ -94,7 +94,7 @@ var vmm = avalon.define({
 			window.location.href = "../consumer/withdraw_detail.html";
 		}
 		if(type == 4){
-			window.location.href = "../consumer/person_info.html";
+			window.location.href = "../consumer/consumer_withdrawD.html";
 		}
 	},
 	removeInput:function(type){

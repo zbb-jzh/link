@@ -51,5 +51,18 @@ public class Consumer extends BaseConsumer<Consumer> {
 		this.put("nodes", nodes);
 		this.nodes = nodes;
 	}
+	
+	private double withdraws;
+	
+	
+
+	public double getWithdraws() {
+		return withdraws;
+	}
+
+	public void setWithdraws(double withdraws) {
+		this.put("withdraws", withdraws);
+		this.withdraws = withdraws;
+	}
 
 }

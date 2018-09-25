@@ -35,6 +35,14 @@ var vm = avalon.define({
 	},
 	add:function()
 	{
+		if(vm.withdrawCount > vm.consumer.prizeCoin){
+			alert('提现超过余额');
+			return;
+		}
+		if(vm.withdrawCount % 100 != 0){
+			alert('提现额度需是100的倍数');
+			return;
+		}
 		vm.consumerwithdraw.consumerId = vm.consumer.id;
 		vm.consumerwithdraw.consumerName = vm.consumer.name;
 		vm.consumerwithdraw.bankAccountName = vm.consumer.bankAccountName;
@@ -52,6 +60,7 @@ var vm = avalon.define({
 			    success: function(res) {
 			    	if (res.status == 1) {
 			    		console.log('sucess');
+			    		alert('提现成功');
 			    		vm.getConsumer();
 			    		//vm.goback();
 	                }else{

@@ -118,6 +118,19 @@ public class ConsumerService {
 	}
 	
 	/**
+	 * 根据ID获取数据
+	 * @param id
+	 * @return
+	 */
+	public Result getByUserJJB(String id)
+	{
+		Consumer consumer = Consumer.dao.findById(id);
+		consumer.setPrizeCoin(SalaryService.service.searchSalary(id));
+		consumer.setWithdraws( WithdrawService.service.searchWithdraw(id));
+		return new Result(Result.SUCCESS_STATUS, consumer);
+	}
+	
+	/**
 	 * 删除
 	 * @param id
 	 * @return

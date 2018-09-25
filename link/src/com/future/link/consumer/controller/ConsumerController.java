@@ -129,6 +129,17 @@ public class ConsumerController extends Controller{
 	}
 	
 	/**
+	 * 根据登录用户查询客户奖金币剩余、提现、综合详细资料 
+	 */
+	@Before({AuthorityInterceptor.class, CheckTwoPwdInterceptor.class})
+	public void doGetByUserJJB()
+	{
+		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
+		
+		renderJson(ConsumerService.service.getByUserJJB(user.getConsumerId()));
+	}
+	
+	/**
 	 * 根据登录用户查询客户详细资料 
 	 */
 	@Before(AuthorityInterceptor.class)

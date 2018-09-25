@@ -60,7 +60,7 @@ public class WithdrawService {
 	 */
 	public Result searchWithdraws(String consumerId) {
 		
-		List<Withdraw> list = Withdraw.dao.find("select * from consumer_withdraw WHERE consumerId = ?", consumerId);
+		List<Withdraw> list = Withdraw.dao.find("select * from consumer_withdraw WHERE consumerId = ? order by withdrawDate desc", consumerId);
 		return new Result(Result.SUCCESS_STATUS, list);
 	}
 	
