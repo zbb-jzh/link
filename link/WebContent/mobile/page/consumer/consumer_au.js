@@ -154,6 +154,7 @@ var vm = avalon.define({
 			    success: function(res) {
 			    	if (res.status == 1) {
 			    		console.log('sucess');
+			    		alert("注册成功");
 			    		//vm.goback();
 	                }else{
 	                	alert(res.data);
