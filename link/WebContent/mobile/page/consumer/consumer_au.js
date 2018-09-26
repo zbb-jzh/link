@@ -233,11 +233,14 @@ var vm = avalon.define({
 	},
 	actionIcon:function(nodes){
 		//node[i].icon="../../common/images/zTreeStandard.png";
-		for(var i=0; i<nodes.length; i++){
-			
-			nodes[i].icon="../../common/images/zTreeStandard.png";
-			vm.actionIcon(nodes[i].nodes);
+		if(nodes != null && nodes.length > 0){
+			for(var i=0; i<nodes.length; i++){
+				
+				nodes[i].icon="../../common/images/zTreeStandard.png";
+				vm.actionIcon(nodes[i].nodes);
+			}
 		}
+		
 	},
 	getConsumerTreeList: function () {
     	$.ajax({
@@ -246,22 +249,22 @@ var vm = avalon.define({
 		    data: {},    //参数值
 		    type: "post",   //请求方式
 		    success: function(res) {
-		    	if (res.status == 100) {
+		    	if (res) {
 		    		//vm.shopCategoryList = res.data;
-		    		res.data.icon="../../common/images/zTreeStandard.png";
-		    		vm.actionIcon(res.data.nodes);
+		    		res.icon="../../common/images/zTreeStandard.png";
+		    		vm.actionIcon(res.nodes);
 		    		/*for(var i=0; i<res.data.nodes.length; i++){
 		    			
 		    			//res.data.nodes[i].icon="../../common/images/zTreeStandard.png";
 		    			vm.actionIcon(res.data.nodes[i]);
 		    		
 		    		}*/
-		    		console.log(res.data)
-		            zTreeObj = $.fn.zTree.init($("#goodsCateory"), setting, res.data);
+		    		console.log(res)
+		            zTreeObj = $.fn.zTree.init($("#goodsCateory"), setting, res);
 		    		var nodes = zTreeObj.getNodes();
 		            zTreeObj.expandAll(true);
 		            
-		            referrerztree = $.fn.zTree.init($("#referrerztree"), referrersetting, res.data);
+		            referrerztree = $.fn.zTree.init($("#referrerztree"), referrersetting, res);
 		            referrerztree.expandAll(true);
 		            
 		            if(vm.consumer.id){
@@ -273,7 +276,7 @@ var vm = avalon.define({
                 }else if(res.status == -110){
                 	window.location.href = "../login/login.html";
                 }else{
-                	alert(res.data);
+                	alert(res);
                 }
 		    },
 		    error: function() {
