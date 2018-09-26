@@ -35,9 +35,9 @@ var setting = {
         },
         callback: {
             beforeCheck: zTreeBeforeCheck,
-            /*onClick: function (e, treeId, treeNode, clickFlag) { 
+            onClick: function (e, treeId, treeNode, clickFlag) { 
             	zTreeObj.checkNode(treeNode, !treeNode.checked, true); 
-        }*/
+        }
         }
         
     };
@@ -71,6 +71,12 @@ var referrersetting = {
                 parent: true,
                 open: true
             }
+        },
+        callback: {
+            //beforeCheck: zTreeBeforeCheck,
+            onClick: function (e, treeId, treeNode, clickFlag) { 
+            	referrerztree.checkNode(treeNode, !treeNode.checked, true); 
+        }
         }
         
     };
