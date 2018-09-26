@@ -123,39 +123,39 @@ var vm = avalon.define({
 		//vm.submited = true;
 		if(vm.consumer.name == ''){
 			alert("姓名不能为空！");
-			return;
+			return false;
 		}
 		if(vm.consumer.phone == ''){
 			alert("手机号不能为空！");
-			return;
+			return false;
 		}
 		if(vm.consumer.bankAccountName == ''){
 			alert(" 银行持卡人姓名不能为空！");
-			return;
+			return false;
 		}
 		if(vm.consumer.bankName == ''){
 			alert("开户银行不能为空！");
-			return;
+			return false;
 		}
 		if(vm.consumer.bankAddress == ''){
 			alert("开户银行所在地不能为空！");
-			return;
+			return false;
 		}
 		if(vm.consumer.bankCard == ''){
 			alert("卡号不能为空！");
-			return;
+			return false;
 		}
 		if(vm.consumer.userName == ''){
 			alert("登录用户名不能为空！");
-			return;
+			return false;
 		}
 		if(vm.consumer.userPwd == ''){
 			alert("登录密码不能为空！");
-			return;
+			return false;
 		}
 		if(vm.consumer.twoPassword == ''){
 			alert("二级密码不能为空！");
-			return;
+			return false;
 		}
 		var nodes = zTreeObj.getCheckedNodes();
 		if (null != nodes && nodes.length > 0) {
@@ -165,7 +165,7 @@ var vm = avalon.define({
             }
         }else if(nodes.length == 0){
         	alert("客户接点不能为空！");
-			return;
+			return false;
         }
         
         var referrernodes = referrerztree.getCheckedNodes();
@@ -176,14 +176,14 @@ var vm = avalon.define({
             }
         }else if(referrernodes.length == 0){
         	alert("推荐人不能为空！");
-			return;
+			return false;
         }
 		
 		if(vm.consumerId)
 		{
 			if(vm.consumerId == vm.consumer.parentId){
 				alert('自己不能选择自己');
-				return;
+				return false;
 			}
 			$.ajax({
 			    url: "../../../consumer/doUpdate",    //请求的url地址
@@ -213,6 +213,7 @@ var vm = avalon.define({
 			    	if (res.status == 1) {
 			    		console.log('sucess');
 			    		alert("注册成功");
+			    		window.location.href = "consumer_node.html";
 			    		//vm.goback();
 	                }else{
 	                	alert(res.data);
