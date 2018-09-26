@@ -98,7 +98,7 @@ public class ConsumerController extends Controller{
 		
 		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
 		if(user.getType() == 2) {
-			renderJson( ConsumerService.service.treeByConsumer(user));
+			renderJson(ConsumerService.service.treeByConsumer(user));
 		}else {
 			renderJson(ConsumerService.service.tree());
 		}
