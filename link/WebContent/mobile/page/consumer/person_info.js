@@ -33,6 +33,26 @@ var vm = avalon.define({
 	},
 	add:function()
 	{
+		if(vm.consumer.phone == ''){
+			alert("手机号不能为空！");
+			return;
+		}
+		if(vm.consumer.bankAccountName == ''){
+			alert(" 银行持卡人姓名不能为空！");
+			return;
+		}
+		if(vm.consumer.bankName == ''){
+			alert("开户银行不能为空！");
+			return;
+		}
+		if(vm.consumer.bankAddress == ''){
+			alert("开户银行所在地不能为空！");
+			return;
+		}
+		if(vm.consumer.bankCard == ''){
+			alert("卡号不能为空！");
+			return;
+		}
 		
 			$.ajax({
 			    url: "../../../consumer/doUpdatePersonInfo",    //请求的url地址
@@ -42,6 +62,7 @@ var vm = avalon.define({
 			    success: function(res) {
 			    	if (res.status == 1) {
 			    		console.log('sucess');
+			    		alert("修改成功");
 			    		vm.getConsumer();
 			    		//vm.goback();
 	                }else{

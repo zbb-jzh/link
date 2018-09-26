@@ -120,7 +120,7 @@ var vm = avalon.define({
 	},
 	add:function()
 	{
-		vm.submited = true;
+		//vm.submited = true;
 		if(vm.consumer.name == ''){
 			alert("姓名不能为空！");
 			return;
