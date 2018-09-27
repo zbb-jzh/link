@@ -249,10 +249,10 @@ var vm = avalon.define({
 		    data: {},    //参数值
 		    type: "post",   //请求方式
 		    success: function(res) {
-		    	if (res) {
+		    	if (res.status == 100) {
 		    		//vm.shopCategoryList = res.data;
-		    		res.icon="../../common/images/zTreeStandard.png";
-		    		vm.actionIcon(res.nodes);
+		    		res.data.icon="../../common/images/zTreeStandard.png";
+		    		vm.actionIcon(res.data.nodes);
 		    		/*for(var i=0; i<res.data.nodes.length; i++){
 		    			
 		    			//res.data.nodes[i].icon="../../common/images/zTreeStandard.png";
@@ -260,23 +260,24 @@ var vm = avalon.define({
 		    		
 		    		}*/
 		    		console.log(res)
-		            zTreeObj = $.fn.zTree.init($("#goodsCateory"), setting, res);
+		            zTreeObj = $.fn.zTree.init($("#goodsCateory"), setting, res.data);
 		    		var nodes = zTreeObj.getNodes();
 		            zTreeObj.expandAll(true);
 		            
-		            referrerztree = $.fn.zTree.init($("#referrerztree"), referrersetting, res);
+		            referrerztree = $.fn.zTree.init($("#referrerztree"), referrersetting, res.data);
 		            referrerztree.expandAll(true);
 		            
 		            if(vm.consumer.id){
 		            	zTreeObj.checkNode(zTreeObj.getNodeByParam("id", vm.consumer.parentId, null), true, true);
 		            }
 		            
-                }else if(res.status == -114){
+                }else
+                	if(res.status == -114){
                 	window.location.href = "../checkpwd/check_pwd.html";
                 }else if(res.status == -110){
                 	window.location.href = "../login/login.html";
                 }else{
-                	alert(res);
+                	alert(res.data);
                 }
 		    },
 		    error: function() {

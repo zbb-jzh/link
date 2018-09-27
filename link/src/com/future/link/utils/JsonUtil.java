@@ -14,5 +14,10 @@ public class JsonUtil {
 	public static <T> T parseJsonToObject(String json,Class<T> clazz){
 		return JSON.parseObject(json,clazz);
 	}
+	
+	public static <T> String parseObjectToJson(Object clazz) {
+		
+		return JSON.toJSONString(clazz);
+	}
 
 }

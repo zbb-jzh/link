@@ -1,5 +1,10 @@
 package com.future.link.consumer.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
+import com.alibaba.fastjson.JSON;
 import com.future.link.base.interceptor.AuthorityInterceptor;
 import com.future.link.base.interceptor.CheckTwoPwdInterceptor;
 import com.future.link.common.Result;
@@ -10,6 +15,7 @@ import com.future.link.consumer.service.SalaryService;
 import com.future.link.consumer.service.WithdrawService;
 import com.future.link.user.model.User;
 import com.future.link.utils.Constant;
+import com.future.link.utils.JsonUtil;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 
@@ -98,7 +104,17 @@ public class ConsumerController extends Controller{
 		
 		User user=(User) this.getRequest().getSession().getAttribute(Constant.SESSION_USER);
 		if(user.getType() == 2) {
-			renderJson(ConsumerService.service.treeByConsumer(user));
+			HttpServletResponse resp = this.getResponse();
+			resp.setContentType("text/html;charset=UTF-8");
+			try {
+				resp.getWriter().print(JSON.toJSONString((ConsumerService.service.treeByConsumer(user))));
+				resp.getWriter().flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//renderJson(ConsumerService.service.treeByConsumer(user));
 		}else {
 			renderJson(ConsumerService.service.tree());
 		}

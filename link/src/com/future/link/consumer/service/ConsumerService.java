@@ -198,14 +198,13 @@ public class ConsumerService {
 	 * 客户只能看到自己一下会员，获取，树形结构
 	 * @return
 	 */
-	public Consumer treeByConsumer(User user)
+	public Result treeByConsumer(User user)
 	{
 		Consumer consumer = Consumer.dao.findById(user.getConsumerId());
 		
 		consumer.setNodes(getChildrenRecursive(consumer.getId()));
-		return consumer;
 		
-		//return new Result(Constant.SUCCESS, consumer);
+		return new Result(Constant.SUCCESS, consumer);
 	}
 	
 	
