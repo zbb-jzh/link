@@ -125,9 +125,13 @@
                         <td>{{item.withdrawDate | date("yyyy-MM-dd HH:mm:ss")}}</td>
                         <td class="shelve" ms-if="item.status==1"><i>已处理</i></td>
                         <td class="off-shelf" ms-if="item.status==0"><i>未处理</i></td>
-                        <td class="status">
+                        <td class="status" ms-if="item.status==0">
                             <!-- <i class="" ms-click="toAU(item.id)">修改|</i> -->
-                            <i class="" ms-click="toShowDetail(item)">处理</i>
+                            <a class="" style="cursor: pointer;" ms-click="toShowDetail(item)">处理</a>
+                        </td>
+                        <td class="status" ms-if="item.status==1">
+                            <!-- <i class="" ms-click="toAU(item.id)">修改|</i> -->
+                            <i class="" >已处理</i>
                         </td>
                     </tr>
                     </tbody>
@@ -186,7 +190,7 @@
                                 </div>
                             </div>
                             <div class="box-footer">
-                                <button type="button" class="btn btn-primary" ms-click="paysalary(withdraw.id)">确认</button>
+                                <button type="button" id="submitSalary" class="btn btn-primary" ms-click="paysalary(withdraw.id)">确认</button>
                             </div>
                         </form>
                     </div>

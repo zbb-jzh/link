@@ -102,6 +102,7 @@ var vm = avalon.define({
     	vm.withdraw.bankCard = obj.bankCard;
     	vm.withdraw.bankName = obj.bankName;
     	vm.withdraw.bankAddress = obj.bankAddress;
+    	$("#submitSalary").attr("disabled", false);
     	vm.showDetail = true;
     },
     hideShow:function(){
@@ -117,6 +118,9 @@ var vm = avalon.define({
 		    success: function(res) {
 		    	if (res.status == 1) {
 		    		alert('支付成功');
+		    		
+		    		$("#submitSalary").attr("disabled", true);
+		    		vm.getWithdrawalList(vm.currentPage, 10);
                 }
 		    },
 		    error: function() {
