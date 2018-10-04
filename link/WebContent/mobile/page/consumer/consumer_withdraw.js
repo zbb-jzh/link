@@ -35,14 +35,19 @@ var vm = avalon.define({
 	},
 	add:function()
 	{
-		if(vm.withdrawCount > vm.consumer.prizeCoin){
+		if(vm.withdrawCount == 0){
+			alert('提现额度需大于0并且是100的倍数');
+			return;
+		}
+		if(parseFloat(vm.withdrawCount) > parseFloat(vm.consumer.prizeCoin)){
 			alert('提现超过余额');
 			return;
 		}
-		if(vm.withdrawCount % 100 != 0){
+		if(parseFloat(vm.withdrawCount) % 100 != 0){
 			alert('提现额度需是100的倍数');
 			return;
 		}
+		$("#submitButton").attr("disabled", true);
 		vm.consumerwithdraw.consumerId = vm.consumer.id;
 		vm.consumerwithdraw.consumerName = vm.consumer.name;
 		vm.consumerwithdraw.bankAccountName = vm.consumer.bankAccountName;
@@ -61,6 +66,7 @@ var vm = avalon.define({
 			    	if (res.status == 1) {
 			    		console.log('sucess');
 			    		alert('提现成功');
+			    		$("#submitButton").attr("disabled", false);
 			    		vm.getConsumer();
 			    		//vm.goback();
 	                }else{
