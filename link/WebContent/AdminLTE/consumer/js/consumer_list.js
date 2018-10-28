@@ -12,6 +12,9 @@ var vm = avalon.define({
 	startDate:'',
 	endDate:'',
 	consumerList:[],
+	hasAdd:false,
+	hasDelete:false,
+	hasUpdate:false,
 	
 	getConsumerList:function(pageNumber, pageSize)
 	{
@@ -115,6 +118,16 @@ var vm = avalon.define({
 		});
     }
 });
+if(btns[0].has){
+	vm.hasAdd = true;
+}
+if(btns[1].has){
+	vm.hasDelete = true;
+}
+console.log(vm.hasDelete);
+if(btns[2].has){
+	vm.hasUpdate = true;
+}
 vm.getConsumerList(1, 10);
 avalon.scan();
 $('.input-datepicker').datetimepicker(
