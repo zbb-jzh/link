@@ -101,7 +101,7 @@ public class ConsumerService {
 					
 					SalaryService.service.add(referrersalary);
 				}
-				
+		//9层奖金
 		String firstParentId = consumer.getParentId();
 		for(int i=0; i<9; i++) {
 			Consumer temp = (Consumer) ConsumerService.service.getById(firstParentId).getData();
