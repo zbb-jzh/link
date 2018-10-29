@@ -70,7 +70,7 @@ public class SalaryService {
 	 */
 	public Result searchSalarys(String consumerId) {
 		
-		List<Salary> list = Salary.dao.find("select * from consumer_salary WHERE consumerId = ?", consumerId);
+		List<Salary> list = Salary.dao.find("select * from consumer_salary WHERE consumerId = ? order by createDate desc", consumerId);
 		return new Result(Constant.SUCCESS, list);
 	}
 
