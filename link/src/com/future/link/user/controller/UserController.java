@@ -218,7 +218,11 @@ public class UserController extends Controller{
 			renderJson(Result.flomErrorData(Constant.PWD_IS_EMPTY));
 			return;
 		}
-		renderJson(UserService.service.modifyPwd(user, newPwd, oldPwd));
+		Result result = UserService.service.modifyPwd(user, newPwd, oldPwd);
+		if(result.getStatus() == 100) {
+			removeSessionAttr(Constant.SESSION_USER);
+		}
+		renderJson(result);
 	}
 	
 	/**
@@ -230,7 +234,12 @@ public class UserController extends Controller{
 		String oldPwd = this.getPara("oldPwd");
 		String newPwd = this.getPara("newPwd");
 		User user = getSessionAttr(Constant.SESSION_USER);
+		Result result = UserService.service.modifyTwoPwd(user, newPwd, oldPwd);
+		if(result.getStatus() == 100) {
+			removeSessionAttr(Constant.CHECKPWD_FLAG);
+			setSessionAttr(Constant.SESSION_USER, result.getData());
+		}
 		
-		renderJson(UserService.service.modifyPwd(user, newPwd, oldPwd));
+		renderJson(result);
 	}
 }

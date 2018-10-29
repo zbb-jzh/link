@@ -27,6 +27,7 @@ var vm = avalon.define({
 	    success: function(res) {
 	    	if(res.status == 100){
 	    		alert("修改成功");
+	    		window.location.href = "../login/login.html";
 //	    		 if(document.referrer == ""){
 //	    			 window.location.href = "../consumer/person_info.html";
 //	    		 }else{

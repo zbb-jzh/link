@@ -298,7 +298,8 @@ public class UserService{
     		return Result.flomErrorData(Constant.OLDPWD_IS_ERROR);
     	}
     	Db.update("update user_user set twoPassword = ? where id = ?", MD5Util.generatePassword(newPwd), user.getId());
-    	return new Result(Constant.SUCCESS);
+    	user.setTwoPassword(MD5Util.generatePassword(newPwd));
+    	return new Result(Constant.SUCCESS, user);
     }
     
     
