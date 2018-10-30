@@ -294,6 +294,11 @@ public class ConsumerService {
 		List<Consumer> list = Consumer.dao.find("select * from consumer_consumer where status = ? and parentId = ? order by createTime desc", Constant.UN_DELETE, pid);
 		if(list!= null && list.size()>0) {
             for(Consumer tmp: list) {
+            	if(tmp.getArea() == 1) {
+            		tmp.setName("A区:" + tmp.getName());
+            	}else {
+            		tmp.setName("B区:" + tmp.getName());
+            	}
                 tmp.setNodes(this.getChildrenRecursive(tmp.getId()));
             }
         }
