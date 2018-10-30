@@ -99,7 +99,7 @@ public class ConsumerService {
 				
 		
 		//如果节点人和推荐人不一样，那么推荐人也得到相应的广告奖金
-				if(!consumer.getParentId().equals(consumer.getReferrerId())) {
+				/*if(!consumer.getParentId().equals(consumer.getReferrerId())) {
 					//奖金
 					Salary referrersalary = new Salary();
 					//节点人获取广告奖
@@ -120,7 +120,7 @@ public class ConsumerService {
 					referrersalary.setLayerAward(setting.getLayerAward());
 					
 					SalaryService.service.add(referrersalary);
-				}
+				}*/
 		//9层奖金
 		Consumer aboveConsumer = (Consumer)ConsumerService.service.getById(consumer.getParentId()).getData();
 		String firstParentId = ((Consumer)ConsumerService.service.getById(consumer.getParentId()).getData()).getParentId();
@@ -140,7 +140,7 @@ public class ConsumerService {
 				firstParentId = temp.getParentId();
 				
 				//如果节点人和推荐人不一样，那么推荐人也得到相应的广告奖金
-				if(!temp.getId().equals(consumer.getReferrerId())) {
+				//if(!temp.getId().equals(consumer.getReferrerId())) {
 					//奖金
 					Salary tempSalary = new Salary();
 					//节点人获取广告奖
@@ -164,7 +164,7 @@ public class ConsumerService {
 					aboveConsumer.setArea(temp.getArea());
 					aboveConsumer.setId(temp.getId());
 					temp = null;
-				}
+				//}
 			}
 		}
 		
