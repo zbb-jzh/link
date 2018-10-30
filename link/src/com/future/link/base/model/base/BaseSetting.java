@@ -57,4 +57,12 @@ public abstract class BaseSetting<M extends BaseSetting<M>> extends Model<M> imp
 		return get("layerAward");
 	}
 
+	public void setVentureCapital(java.lang.Double ventureCapital) {
+		set("ventureCapital", ventureCapital);
+	}
+
+	public java.lang.Double getVentureCapital() {
+		return get("ventureCapital");
+	}
+
 }

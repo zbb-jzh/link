@@ -55,8 +55,12 @@ public class ConsumerService {
 		user.setCreateTime(ToolDateTime.getDateByTime());
 		user.save();
 		
+		
+		
 		//参数设置
 		Setting setting = SettingService.service.getById();
+		
+		
 		//奖金
 		Salary salary = new Salary();
 		//节点人获取广告奖
@@ -77,6 +81,22 @@ public class ConsumerService {
 		salary.setLayerAward(setting.getLayerAward());
 		
 		SalaryService.service.add(salary);
+		
+		//判断是否具体创业奖金条件
+		List<Consumer> consumers = getChildrenRecursive(consumer.getParentId());
+		if(consumers != null && consumers.size() == 2) {
+			Salary salary1 = new Salary();
+			salary1.setConsumerId(consumer.getParentId());
+			salary1.setVentureCapital(setting.getVentureCapital());
+			salary1.setManagementFee(salary1.getVentureCapital() * setting.getManagementFeeRatio()); //管理费
+			salary1.setWithdrawalFee(salary1.getVentureCapital() * setting.getWithdrawalRatio());    //提现手续费
+			salary1.setRealWage(salary1.getVentureCapital() - salary1.getManagementFee() - salary1.getWithdrawalFee()); //实发
+			salary1.setBAdvertisingaward(0.0);
+			salary1.setId(CommonUtil.getUUID());
+			salary1.setCreateDate(ToolDateTime.getDate());
+			salary1.save();
+		}
+				
 		
 		//如果节点人和推荐人不一样，那么推荐人也得到相应的广告奖金
 				if(!consumer.getParentId().equals(consumer.getReferrerId())) {
@@ -102,21 +122,30 @@ public class ConsumerService {
 					SalaryService.service.add(referrersalary);
 				}
 		//9层奖金
-		String firstParentId = consumer.getParentId();
+		Consumer aboveConsumer = (Consumer)ConsumerService.service.getById(consumer.getParentId()).getData();
+		String firstParentId = ((Consumer)ConsumerService.service.getById(consumer.getParentId()).getData()).getParentId();
+		
+		Consumer temp = null;
+
 		for(int i=0; i<9; i++) {
-			Consumer temp = (Consumer) ConsumerService.service.getById(firstParentId).getData();
 			
-			if(temp.getParentId() == null) {
+			if(StrKit.notBlank(firstParentId)) {
+				temp = (Consumer) ConsumerService.service.getById(firstParentId).getData();
+			}
+			
+			if(null == temp) {
 				break;
 			}else {
+				
 				firstParentId = temp.getParentId();
+				
 				//如果节点人和推荐人不一样，那么推荐人也得到相应的广告奖金
 				if(!temp.getId().equals(consumer.getReferrerId())) {
 					//奖金
 					Salary tempSalary = new Salary();
 					//节点人获取广告奖
 					tempSalary.setConsumerId(temp.getId());
-					if(consumer.getArea() == 1) {
+					if(aboveConsumer.getArea() == 1) {
 						tempSalary.setAAdvertisingaward(setting.getAAdvertisingaward());
 						tempSalary.setManagementFee(tempSalary.getAAdvertisingaward() * setting.getManagementFeeRatio()); //管理费
 						tempSalary.setWithdrawalFee(tempSalary.getAAdvertisingaward() * setting.getWithdrawalRatio());    //提现手续费
@@ -132,6 +161,9 @@ public class ConsumerService {
 					tempSalary.setLayerAward(setting.getLayerAward());
 					
 					SalaryService.service.add(tempSalary);
+					aboveConsumer.setArea(temp.getArea());
+					aboveConsumer.setId(temp.getId());
+					temp = null;
 				}
 			}
 		}

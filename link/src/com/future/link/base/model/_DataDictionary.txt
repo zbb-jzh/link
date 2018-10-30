@@ -54,6 +54,7 @@ Table: base_setting
  a_advertisingAward | DOUBLE(22)   | YES  |     |         | a区广告奖金  
  b_advertisingAward | DOUBLE(22)   | YES  |     |         | b区广告奖金  
  layerAward         | DOUBLE(22)   | YES  |     |         | 层奖      
+ ventureCapital     | DOUBLE(22)   | YES  |     |         | 创业奖金    
 --------------------+--------------+------+-----+---------+---------
 
 Table: base_user_role
