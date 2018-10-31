@@ -39,7 +39,7 @@ Table: consumer_salary
  realWage           | DOUBLE(22)  | YES  |     | 0       | 实发工资    
  createDate         | DATE(10)    | YES  |     |         | 日期      
  consumerId         | VARCHAR(50) | YES  |     |         | 客户id    
- ventureCapital     | DOUBLE(22)  | YES  |     | 0       | 创业奖金    
+ ventureCapital     | DOUBLE(22)  | YES  |     | 0       | 创业金     
 --------------------+-------------+------+-----+---------+---------
 
 Table: consumer_withdraw

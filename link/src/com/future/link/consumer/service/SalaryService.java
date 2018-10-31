@@ -45,7 +45,7 @@ public class SalaryService {
 	
 	public Salary getByCondition(Salary model) {
 		
-		return Salary.dao.findFirst("select * from consumer_salary WHERE createDate = ? and consumerId = ?", ToolDateTime.format(new Date(), "yyyy-MM-dd"), model.getConsumerId());
+		return Salary.dao.findFirst("select * from consumer_salary WHERE createDate = ? and consumerId = ? and ventureCapital = 0", ToolDateTime.format(new Date(), "yyyy-MM-dd"), model.getConsumerId());
 		
 	}
 	
