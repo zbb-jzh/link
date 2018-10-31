@@ -81,4 +81,12 @@ public abstract class BaseSalary<M extends BaseSalary<M>> extends Model<M> imple
 		return get("consumerId");
 	}
 
+	public void setVentureCapital(java.lang.Double ventureCapital) {
+		set("ventureCapital", ventureCapital);
+	}
+
+	public java.lang.Double getVentureCapital() {
+		return get("ventureCapital");
+	}
+
 }
