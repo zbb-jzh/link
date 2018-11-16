@@ -243,6 +243,12 @@ public class ConsumerService {
 		
 	}
 	
+	/**
+	 * 递归查询子节点
+	 * @param consumerList
+	 * @param floor
+	 * @return
+	 */
 	public boolean searchCh(List<Consumer> consumerList, Integer floor) {
 		if(floor == 2 && null != consumerList && consumerList.size() > 0) {
 			return true;
