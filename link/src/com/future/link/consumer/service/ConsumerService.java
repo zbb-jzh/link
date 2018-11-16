@@ -24,6 +24,9 @@ public class ConsumerService {
 	
 	public static final ConsumerService service = Enhancer.enhance(ConsumerService.class);
 	
+	//层数
+	public static Integer floor = 2;
+	
 	/**
 	 * 新增
 	 * @param user
@@ -95,6 +98,33 @@ public class ConsumerService {
 			salary1.setId(CommonUtil.getUUID());
 			salary1.setCreateDate(ToolDateTime.getDate());
 			salary1.save();
+		}else {
+			Consumer aboveConsumer = (Consumer)this.getById(consumer.getParentId()).getData();
+			this.generatorFloor(aboveConsumer, 2);
+			/*if(null != aboveConsumer && null != aboveConsumer.getParentId()) {
+				Consumer tempConsumer = (Consumer)ConsumerService.service.getById(aboveConsumer.getParentId()).getData();
+				//查询另一个区域
+				Consumer otherConsumer = this.getOtherArea(tempConsumer.getId(), aboveConsumer.getArea());
+				
+				if(null != otherConsumer) {
+					List<Consumer> otherConsumerCh = this.getChildrenRecursive(otherConsumer.getParentId());
+					
+					//如果另一个分支也有区域则形成层奖
+					if(null != otherConsumerCh && otherConsumerCh.size() > 0) {
+						Salary salary1 = new Salary();
+						salary1.setConsumerId(tempConsumer.getId());
+						salary1.setVentureCapital(setting.getVentureCapital());
+						salary1.setManagementFee(salary1.getVentureCapital() * setting.getManagementFeeRatio()); //管理费
+						salary1.setWithdrawalFee(salary1.getVentureCapital() * setting.getWithdrawalRatio());    //提现手续费
+						salary1.setRealWage(salary1.getVentureCapital() - salary1.getManagementFee() - salary1.getWithdrawalFee()); //实发
+						salary1.setBAdvertisingaward(0.0);
+						salary1.setId(CommonUtil.getUUID());
+						salary1.setCreateDate(ToolDateTime.getDate());
+						salary1.save();
+					}
+				}
+				
+			}*/
 		}
 				
 		
@@ -169,6 +199,82 @@ public class ConsumerService {
 		}
 		
 		return new Result(Result.SUCCESS_STATUS, "添加成功");
+	}
+	private String consumerId = "";
+	public void generatorFloor(Consumer aboveConsumer, Integer floor) {
+		if(null != aboveConsumer && null != aboveConsumer.getParentId()) {
+			
+			Consumer tempConsumer = (Consumer)ConsumerService.service.getById(aboveConsumer.getParentId()).getData();
+			consumerId = tempConsumer.getId();
+			//查询另一个区域
+			//Consumer otherConsumer = this.getOtherArea(tempConsumer.getId(), aboveConsumer.getArea());
+			
+			this.searchOtherCh(tempConsumer, aboveConsumer, floor);
+			
+			this.generatorFloor(tempConsumer, ++floor);
+			
+		}
+	}
+	
+	//往下找
+	public void searchOtherCh(Consumer aboveConsumer, Consumer theConsumer, Integer floor) {
+		 
+			//查询另一个区域
+			Consumer otherConsumer = this.getOtherArea(aboveConsumer.getId(), theConsumer.getArea());
+			if(null != otherConsumer) {
+				List<Consumer> otherConsumerCh = this.getChildrenRecursive(otherConsumer.getId());
+				
+				//如果另一个分支也有区域则形成层奖
+				if(this.searchCh(otherConsumerCh, floor)) {
+					Salary salary1 = new Salary();
+					//参数设置
+					Setting setting = SettingService.service.getById();
+					salary1.setConsumerId(consumerId);
+					salary1.setVentureCapital(setting.getVentureCapital());
+					salary1.setManagementFee(salary1.getVentureCapital() * setting.getManagementFeeRatio()); //管理费
+					salary1.setWithdrawalFee(salary1.getVentureCapital() * setting.getWithdrawalRatio());    //提现手续费
+					salary1.setRealWage(salary1.getVentureCapital() - salary1.getManagementFee() - salary1.getWithdrawalFee()); //实发
+					salary1.setBAdvertisingaward(0.0);
+					salary1.setId(CommonUtil.getUUID());
+					salary1.setCreateDate(ToolDateTime.getDate());
+					salary1.save();
+				}
+			}
+		
+	}
+	
+	public boolean searchCh(List<Consumer> consumerList, Integer floor) {
+		if(floor == 2 && null != consumerList && consumerList.size() > 0) {
+			return true;
+		}else if(null == consumerList || consumerList.size() == 0){
+			return false;
+		}else{
+			boolean flag = false;
+			for(int j=floor; j>2; j--) {
+				for(int i=0; i<consumerList.size(); i++) {
+					List<Consumer> otherConsumerCh = this.getChildrenRecursive(consumerList.get(i).getId());
+					if(this.searchCh(otherConsumerCh, --floor)) {
+						flag = true;
+						break;
+					}else{
+						++floor;
+					}
+				}
+			}
+			
+			return flag;
+		}
+	}
+	
+	/**
+	 * 查询另一个区域
+	 * @param parentId
+	 * @param area
+	 * @return
+	 */
+	public Consumer getOtherArea(String parentId, Integer area) {
+		Consumer model = Consumer.dao.findFirst("select * from consumer_consumer where status = ? and parentId = ? and area != ? ", Constant.UN_DELETE, parentId, area);
+		return model;
 	}
 	
 	/**
