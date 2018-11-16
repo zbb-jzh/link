@@ -216,7 +216,12 @@ public class ConsumerService {
 		}
 	}
 	
-	//往下找
+	/**
+	 * 查询子节点
+	 * @param aboveConsumer
+	 * @param theConsumer
+	 * @param floor
+	 */
 	public void searchOtherCh(Consumer aboveConsumer, Consumer theConsumer, Integer floor) {
 		 
 			//查询另一个区域
