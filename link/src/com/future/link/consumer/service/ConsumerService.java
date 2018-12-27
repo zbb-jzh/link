@@ -55,6 +55,7 @@ public class ConsumerService {
 		user.setTwoPassword(MD5Util.generatePassword(consumer.getTwoPassword()));
 		user.setPhone(consumer.getPhone());
 		user.setType(2);
+		user.setStatus(Constant.UN_DELETE);
 		user.setCreateTime(ToolDateTime.getDateByTime());
 		user.save();
 		
@@ -318,9 +319,11 @@ public class ConsumerService {
 	 * @param id
 	 * @return
 	 */
+	@Before(Tx.class)
 	public Result deleteById(String id)
 	{
 		Db.update("update consumer_consumer set status = ? where id = ?", Consumer.DELETEED, id);
+		Db.update("update user_user set status = ? where consumerId = ?", Consumer.DELETEED, id);
 		return new Result(Result.SUCCESS_STATUS, "删除成功");
 	}
 	

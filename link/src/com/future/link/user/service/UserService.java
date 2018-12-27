@@ -121,7 +121,7 @@ public class UserService{
 	 */
 	public Result isExit(String name)
 	{
-		List<User> list = User.dao.find("select * from user_user where name = ?", name);
+		List<User> list = User.dao.find("select * from user_user where name = ? and status = 1", name);
 		if(list != null && list.size() > 0 )
 		{
 			return new Result(Constant.HAS_EXIT, "已存在");
@@ -188,7 +188,7 @@ public class UserService{
      */
     public Result verifyPassword(String name, String password)
     {
-    	User user = User.dao.findFirst("select * from user_user where name = ?", name);
+    	User user = User.dao.findFirst("select * from user_user where name = ? and status = 1", name);
     	if(MD5Util.validatePassword(user.getPassword(), password)){
     		return new Result(Constant.SUCCESS, user);
     	}else{
